@@ -4,6 +4,7 @@ before_script:
   - apt-get update  --yes
   - apt-get upgrade --yes
   - DEBIAN_FRONTEND=noninteractive apt-get install --yes cmake
+  - apt-get install --yes build-essential
 
 build:
   script:
