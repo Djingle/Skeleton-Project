@@ -5,6 +5,14 @@ before_script:
   - apt-get upgrade --yes
   - DEBIAN_FRONTEND=noninteractive apt-get install --yes cmake
   - apt-get install --yes build-essential
+  - apt-get install --yes libgl1-mesa-dev
+  - apt-get install --yes libxt-dev
+  - apt-get install --yes libxrandr-dev
+  - apt-get install --yes libxinerama-dev
+  - apt-get install --yes libxcursor-dev
+  - apt-get install --yes libxi-dev
+  - apt-get install --yes libglew-dev
+
 
 build:
   script:
