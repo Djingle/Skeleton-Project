@@ -9,5 +9,5 @@ build:
   script:
   - mkdir build
   - cd build
-  - cmake -S ../ -B ./ -D 
+  - cmake -S ../ -B ./
   - cmake --build ./
