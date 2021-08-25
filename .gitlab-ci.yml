@@ -19,6 +19,12 @@ before_script:
 
 build:
   script:
+  - cd ./externals/pmp-library/
+  - mkdir build
+  - cd build
+  - cmake -S ../ -B ./
+  - cmake --build ./
+  - cd ../../../
   - mkdir build
   - cd build
   - cmake -S ../ -B ./
