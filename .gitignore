@@ -1,3 +1,4 @@
 .vscode/**
 build*/**
 externals/**
+data_output/*
