@@ -17,4 +17,10 @@ void printUsage(int argc,
                 char** argv,
                 const std::vector< ArgPair >& requiredArgs);
 
+/**
+ * @brief Waits for the user to feed something to the standard input
+ * 
+ */
+void waitUserInput();
+
 #endif // CLI_TOOLS_H

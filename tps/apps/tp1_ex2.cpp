@@ -1,7 +1,7 @@
 #include <iostream>
 
 #include "../include/cli_tools.h"
-#include "../include/tp1_ex1_tools.h"
+#include "../include/tp1_ex2_tools.h"
 
 int main(int argc, char** argv)
 {
@@ -36,11 +36,6 @@ int main(int argc, char** argv)
     }    
     // ****************************************************************************************
 
-    // Additional hard coded parameters
-    size_t nMaxVerticesToPrint = 20;
-    size_t nMaxEdgesToPrint    = 20;
-    size_t nMaxFacesToPrint    = 20;
-
     // Load the input mesh
     pmp::SurfaceMesh inputMesh;
     if( !inputMesh.read(inputMeshPath) )
@@ -49,45 +44,53 @@ int main(int argc, char** argv)
         return 2;
     }
     std::cout << "Successfully loaded mesh from \"" << inputMeshPath << "\"" << std::endl;
+    const pmp::SurfaceMesh* const inputMeshPtr = &inputMesh;
+
+    // Get first vertex and the first face of the mesh
+    pmp::Vertex   v0  = *(inputMesh.vertices_begin());
+    pmp::Face     f0  = *(inputMesh.faces_begin());
+    pmp::Halfedge he0 = *(inputMesh.halfedges_begin());
 
     // ****************************************************************************************
-    // A - Print general information about the loaded mesh
+    // A - Print connectivity from half-edge he0
     // ****************************************************************************************
-    questionA_printGeneralInformationAboutMesh(inputMesh, inputMeshPath);
+    questionA_printVerticesOfHalfEdge(inputMeshPtr, he0);
+    waitUserInput();
 
-    // Wait for user input before continuing
+    questionA_printIncidentFaceOfHalfEdge(inputMeshPtr, he0);
+    waitUserInput();
+
+    questionA_printVerticesOfOppositeHalfEdge(inputMeshPtr, he0);
+    waitUserInput();
+
+    questionA_printVerticesOfNextHalfEdge(inputMeshPtr, he0);
+    waitUserInput();
+
+    questionA_printVerticesOfPreviousHalfEdge(inputMeshPtr, he0);
     waitUserInput();
 
     // ****************************************************************************************
-    // B - Print vertices
+    // B - Print connectivity from vertex v0
     // ****************************************************************************************
-    questionB_printMeshVerticesV1(inputMesh, nMaxVerticesToPrint);
-    // questionB_printMeshVerticesV2(inputMesh, nMaxVerticesToPrint);
-    // questionB_printMeshVerticesV3(inputMesh, nMaxVerticesToPrint);
-    
-    // Wait for user input before continuing
+    questionB_printVerticesAroundVertex(inputMeshPtr, v0);
+    waitUserInput();
+
+    questionB_printHalfEdgesAroundVertex(inputMeshPtr, v0);
+    waitUserInput();
+
+    questionB_printFacesAroundVertex(inputMeshPtr, v0);
     waitUserInput();
 
     // ****************************************************************************************
-    // C - Print the half edges
+    // C - Print connectivity from face f0
     // ****************************************************************************************
-    questionC_printMeshHalfEdges(inputMesh, nMaxEdgesToPrint);
-    
-    // Wait for user input before continuing
-    waitUserInput();
-    
-    // ****************************************************************************************
-    // D - Print the edges via half edges
-    // ****************************************************************************************
-    questionD_printMeshEdges(inputMesh, nMaxEdgesToPrint);
-
-    // Wait for user input before continuing
+    questionC_printVerticesAroundFace(inputMeshPtr, f0);
     waitUserInput();
 
-    // ****************************************************************************************
-    // E - Print the faces
-    // ****************************************************************************************
-    questionE_printMeshFaces(inputMesh, nMaxFacesToPrint);
+    questionC_printHalfEdgesAroundFace(inputMeshPtr, f0);
+    waitUserInput();
+
+    questionC_printFacesAroundFace(inputMeshPtr, f0);
 
     return 0;
 }

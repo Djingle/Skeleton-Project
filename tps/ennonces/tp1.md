@@ -34,25 +34,39 @@ Finalement, vous trouverez des exemples pratiques écrits par l'équipe de déve
 - Charger un maillage
 - Sauvegarder ce maillage dans un autre fichier
 
-## Exercice 1
+## Exercice 1 - Informations générales sur un maillage
 
-- Charger un maillage, afficher en console : le nombre de sommets, d'aretes et de faces
-- Afficher ses sommets (index et position)
-- Afficher ses aretesAfficher ses faces dans une console
+- A: Charger un maillage, afficher en console : le nombre de sommets, d'aretes et de faces
+- B: Afficher ses sommets (index et position)
+- C: Afficher ses helf edges
+- D: Afficher ses aretes
+- E: Afficher ses faces dans une console
 
-- Parcourir les arêtes adjacentes à un sommet source
+### Exercice 2 - Découvrir la topologie du maillage (structure de Half-Edge)
+
+- A: Parcourir les arêtes adjacentes à une arête source
+- Parcourir les sommets voisins une arête source
+- Parcourir les faces adjacentes à une arête source
+- 
+- B : Parcourir les arêtes adjacentes à un sommet source
 - Parcourir les sommets voisins d'un sommet source
 - Parcourir les faces adjacentes à un sommet source
 
-- Parcourir les arêtes adjacentes à une arête source
-- Parcourir les sommets voisins une arête source
-- Parcourir les faces adjacentes à une arête source
-
-- Parcourir les arêtes adjacentes à une face source
+- C: Parcourir les arêtes adjacentes à une face source
 - Parcourir les sommets voisins d'une face source
 - Parcourir les faces adjacentes à une face source
 
-## Exercice 2
+## Exercice 3
+
+- Charger un maillage
+- Afficher ses sommets, aretes et faces dans une GUI
+- Ajouter un bouton à la GUI permettant de colorer le maillage
+
+- Charger deux maillages
+- Avoir un bouton qui selectionne lequel afficher
+
+
+- ## Exercice 4
 
 Géométrie:
 
@@ -63,14 +77,9 @@ Géométrie:
 Topologie:
 - Visualiser les faces non triangulaires
 
-## Exercice 3
 
-- Charger un maillage
-- Afficher ses sommets, aretes et faces dans une GUI
-- Ajouter un bouton à la GUI
-- Colorer un maillage et le visualiser
 
-## Exercice 4
+## Exercice 5
 
 - Charger un maillage
 - Colorer les sommets selon leur valence
