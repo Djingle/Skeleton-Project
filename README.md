@@ -2,6 +2,13 @@
 
 Travaux pratiques pour le cours de géométrie numérique de Master 1 de l'Université de Strasbourg (2021)
 
+# IMPORTANT : 
+
+Peut être utile:
+```
+git submodule update --remote --merge
+```
+
 # Comment utiliser ce starter kit :
 
 ## Prérequis :

@@ -43,11 +43,7 @@ int main(int argc, char** argv)
 
     // Load the input mesh
     pmp::SurfaceMesh inputMesh;
-    if( !inputMesh.read(inputMeshPath) )
-    {
-        std::cerr << "An error occured while loading the mesh from \"" << inputMeshPath << "\".\n Abort process." << std::endl;
-        return 2;
-    }
+    inputMesh.read(inputMeshPath);
     std::cout << "Successfully loaded mesh from \"" << inputMeshPath << "\"" << std::endl;
 
     // ****************************************************************************************

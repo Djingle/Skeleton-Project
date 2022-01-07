@@ -56,23 +56,22 @@ Finalement, vous trouverez des exemples pratiques écrits par l'équipe de déve
 - Parcourir les sommets voisins d'une face source
 - Parcourir les faces adjacentes à une face source
 
-## Exercice 3
+- ## Exercice 3 - Modifier géométrie
+
+- Charger un maillage
+- Appliquer une transformation affine
+- Sauvegarder le maillage transformé
+
+## Exercice 3 - Visualisation
 
 - Charger un maillage
 - Afficher ses sommets, aretes et faces dans une GUI
 - Ajouter un bouton à la GUI permettant de colorer le maillage
 
 - Charger deux maillages
-- Avoir un bouton qui selectionne lequel afficher
+- Avoir une combo box qui selectionne lequel afficher
 
 
-- ## Exercice 4
-
-Géométrie:
-
-- Charger un maillage
-- Appliquer une transformation affine
-- Sauvegarder le maillage transformé
 
 Topologie:
 - Visualiser les faces non triangulaires

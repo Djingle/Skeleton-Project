@@ -1,8 +1,9 @@
 #include <iostream>
 
-#include "../include/cli_tools.h"
+#include <pmp/visualization/MeshViewer.h>
 
-#include "pmp/SurfaceMesh.h"
+#include "../include/cli_tools.h"
+#include "../include/tp1_ex4_tools.h"
 
 int main(int argc, char** argv)
 {
@@ -12,8 +13,6 @@ int main(int argc, char** argv)
 
     requiredArgs.push_back( ArgPair("inputMeshPath",
                                     "Path of the mesh to be loaded") );
-    requiredArgs.push_back( ArgPair("outputMeshPath",
-                                    "Path of the mesh to be saved") );
 
     // Check command line validity
     if( (size_t)argc != requiredArgs.size()+1 )
@@ -26,11 +25,9 @@ int main(int argc, char** argv)
     // Get arguments from command line
     int         iArg  = 1;
     std::string inputMeshPath;
-    std::string outputMeshPath;
     try
     {
         inputMeshPath  = argv[iArg++];
-        outputMeshPath = argv[iArg++];
     }
     catch(const std::exception& e)
     {
@@ -42,13 +39,21 @@ int main(int argc, char** argv)
     // ****************************************************************************************
 
     // Load the input mesh
-    pmp::SurfaceMesh inputMesh;
+    pmp::SurfaceMeshGL inputMesh;
     inputMesh.read(inputMeshPath);
     std::cout << "Successfully loaded mesh from \"" << inputMeshPath << "\"" << std::endl;
+    const pmp::SurfaceMeshGL* const inputMeshPtr = &inputMesh;
 
-    // Write the output mesh
-    inputMesh.write(outputMeshPath);
-    std::cout << "Successfully saved mesh in \"" << outputMeshPath << "\"" << std::endl;
+    // Instanciate a mesh viewer and attach the input mesh
+    std::string winTitle = "TP 1 - Ex.3 - Interface graphique et visualisation";
+    int winWidth         = 800;
+    int winHeight        = 600;
+    TP1_Ex4_MeshViewer meshViewer(winTitle.c_str(),
+                                  winWidth, winHeight,
+                                  inputMesh);
+
+    // Start main window loop
+    meshViewer.run();
 
     return 0;
 }
