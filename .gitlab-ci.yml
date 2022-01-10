@@ -16,9 +16,10 @@ before_script:
   - apt-get install --yes libxi-dev
   - apt-get install --yes libglew-dev
 
-
 build:
   script:
+  - git submodule update --remote --merge
+  - cp override_pmp_files/SurfaceMeshGL.cpp externals/pmp-library/src/pmp/visualization/SurfaceMeshGL.cpp
   - cd ./externals/pmp-library/
   - mkdir build
   - cd build
@@ -31,4 +32,4 @@ build:
   - cmake --build ./
   artifacts:
     paths:
-      - ./tps/
+      - ./tps/tp*
