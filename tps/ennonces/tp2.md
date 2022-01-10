@@ -12,7 +12,7 @@
 ## Exercice 3:
 - Verifier qu'on a un maillage triangulaire
 - Verifier qu'il est watertight
-- Verifier qu'il est manifold
+- Verifier qu'il est manifold (surligner le non manifold)
 - "Qu'est ce qu'il faut tester ?" (ex: isolated vertex, etc)
 
 ## Exercice 4:
@@ -24,7 +24,7 @@
   - Barycentre des sommets
   - Barycentre des faces
   - Volume
-  - Nombre d'Euler
+  - Nombre d'Euler et genre
 
 ## Exercice 5:
 - Calculer le Voronoï du maillage (dual)

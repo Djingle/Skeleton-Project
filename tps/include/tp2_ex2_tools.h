@@ -27,4 +27,4 @@ void removeSmallConnectedComponents(pmp::SurfaceMesh&       mesh,
                                     std::vector< size_t >&  nVerticesInCc,
                                     size_t                  nVerticesMin = 0);
 
-#endif // TP2_Ex2_TOOLS_H
+#endif // TP2_EX2_TOOLS_H
