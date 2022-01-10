@@ -125,7 +125,7 @@ void vertex_property_to_color(pmp::SurfaceMeshGL& mesh,
     for( auto v : mesh.vertices() )
     {
         // min = 0 degres, max = 270 degres = 2/3
-        hue = (2.0/3.0) * ( 1 - (props[v] - vmin))  / range;
+        hue = (2.0/3.0) * ( 1 - ((props[v] - vmin)  / range));
         ImGui::ColorConvertHSVtoRGB(hue, sat, val, r, g, b);
         vColors[v] = pmp::Color(r, g, b);
     }

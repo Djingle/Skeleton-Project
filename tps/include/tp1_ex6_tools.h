@@ -25,4 +25,4 @@ void colorFacesPerArea(pmp::SurfaceMeshGL &mesh);
 
 void face_area_to_color(pmp::SurfaceMeshGL &mesh);
 
-#endif // TP1_Ex5_TOOLS_H
+#endif // TP1_EX6_TOOLS_H

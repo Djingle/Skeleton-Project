@@ -20,7 +20,7 @@ public:
 void labelVerticesPerConnectedComponent(pmp::SurfaceMesh&  mesh,
                                         const std::string& storagePropertyName);
 
-void vertex_property_to_color(pmp::SurfaceMeshGL& mesh,
-                             const std::string&  propertyName);
+void vertex_property_to_color(pmp::SurfaceMeshGL&   mesh,
+                             const std::string&     propertyName);
 
-#endif // TP1_Ex5_TOOLS_H
+#endif // TP1_EX7_TOOLS_H

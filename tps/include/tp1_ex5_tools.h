@@ -20,4 +20,4 @@ private:
     int                                     selectedMeshId_;
 };
 
-#endif // TP1_Ex5_TOOLS_H
+#endif // TP1_EX5_TOOLS_H
