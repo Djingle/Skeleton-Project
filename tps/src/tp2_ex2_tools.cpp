@@ -49,7 +49,8 @@ void TP2_Ex2_MeshViewer::process_imgui()
 
     if( ImGui::Button("Fill holes") )
     {
-        mesh_.remove_face_property<pmp::Color>(mesh_.face_property<pmp::Color>("f:color"));
+        auto fColors = mesh_.face_property<pmp::Color>("f:color");
+        mesh_.remove_face_property<pmp::Color>(fColors);
         fillHoles(mesh_);
         update_mesh();
     }

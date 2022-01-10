@@ -49,7 +49,8 @@ void TP2_Ex1_MeshViewer::process_imgui()
 
     if( ImGui::Button("Triangulate mesh") )
     {
-        mesh_.remove_face_property<pmp::Color>(mesh_.face_property<pmp::Color>("f:color"));
+        auto fColors = mesh_.face_property<pmp::Color>("f:color");
+        mesh_.remove_face_property<pmp::Color>(fColors);
         pmp::SurfaceTriangulation triangulation(mesh_);
         triangulation.triangulate();
         update_mesh();
