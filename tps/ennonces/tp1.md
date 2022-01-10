@@ -62,33 +62,24 @@ Finalement, vous trouverez des exemples pratiques écrits par l'équipe de déve
 - Appliquer une transformation affine
 - Sauvegarder le maillage transformé
 
-## Exercice 3 - Visualisation
+## Exercice 4 - Visualisation
 
 - Charger un maillage
 - Afficher ses sommets, aretes et faces dans une GUI
 - Ajouter un bouton à la GUI permettant de colorer le maillage
 
+## Exercice 5 - Visualisation
+
 - Charger deux maillages
 - Avoir une combo box qui selectionne lequel afficher
 
-
-
-Topologie:
-- Visualiser les faces non triangulaires
-
-
-
-## Exercice 5
+## Exercice 6
 
 - Charger un maillage
 - Colorer les sommets selon leur valence
 - Colorer les faces selon leur aire
 
-## Exercice 5
+## Exercice 7
 
 - Charger un maillage
 - Identifier les composantes connexes et les afficher dans une couleur différente
-
-## Exercice 6 (bonus)
-
-- Un sommet source, utiliser Kruskal pour approximer des géodésiques

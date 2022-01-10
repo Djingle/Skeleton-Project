@@ -95,7 +95,7 @@ if(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
     add_compile_options(/wd4244) # conversion from double to float
     add_compile_options(/wd4305) # truncation from double to float
 elseif(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
-    set(CMAKE_CXX_FLAGS "-Wall -o3 -DGLEW_STATIC")
+    set(CMAKE_CXX_FLAGS "-Wall -O3 -DGLEW_STATIC -pthread")
 else()
     message(FATAL_ERROR "Compiler not supported for this project, however you can modify the CMakeLists.txt file to fit your needs.")
 endif()

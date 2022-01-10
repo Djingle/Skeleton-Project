@@ -49,14 +49,16 @@ void TP1_Ex4_MeshViewer::process_imgui()
 
     if( ImGui::Button("Color in red") )
     {
-        mesh_.remove_vertex_property(mesh_.vertex_property<pmp::Color>("v:color"));
+        auto test = mesh_.vertex_property<pmp::Color>("v:color");
+        mesh_.remove_vertex_property(test);
         colorMeshFaces(mesh_, pmp::Color(1.0, 0.0, 0.0));
         update_mesh();
     }
 
     if( ImGui::Button("Color in green") )
     {
-        mesh_.remove_vertex_property(mesh_.vertex_property<pmp::Color>("v:color"));
+        auto test = mesh_.vertex_property<pmp::Color>("v:color");
+        mesh_.remove_vertex_property(test);
         colorMeshFaces(mesh_, pmp::Color(0.0, 1.0, 0.0));
         update_mesh();
     }
