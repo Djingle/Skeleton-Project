@@ -18,7 +18,6 @@ before_script:
 
 build:
   script:
-  - git submodule update --remote --merge
   - cp override_pmp_files/SurfaceMeshGL.cpp externals/pmp-library/src/pmp/visualization/SurfaceMeshGL.cpp
   - cd ./externals/pmp-library/
   - mkdir build
@@ -30,6 +29,8 @@ build:
   - cd build
   - cmake -S ../ -B ./ -D BUILD_CORRECTIONS=TRUE -D BUILD_STUDENTS=TRUE
   - cmake --build ./
+  - mkdir ../artifacts
+  - cp ./tps/tp* ../artifacts/
   artifacts:
     paths:
       - ./tps/corrections/bin/
