@@ -2,6 +2,9 @@ cmake_minimum_required(VERSION 3.13.4)
 
 project("geometrie_numerique_tps")
 
+set(BUILD_STUDENTS FALSE CACHE PATH "Set to true if you want to build the student version")
+set(BUILD_CORRECTIONS FALSE CACHE PATH "Set to true if you want to build the corrections too")
+
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
@@ -100,5 +103,11 @@ else()
     message(FATAL_ERROR "Compiler not supported for this project, however you can modify the CMakeLists.txt file to fit your needs.")
 endif()
 
-# Adding common code to subprojects
-add_subdirectory("./tps/")
+# Adding tps projects
+if(BUILD_STUDENTS)
+    add_subdirectory("./tps/")
+endif()
+
+if(BUILD_CORRECTIONS)
+    add_subdirectory("./tps/corrections/")
+endif()

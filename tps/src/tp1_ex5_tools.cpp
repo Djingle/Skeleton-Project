@@ -5,18 +5,17 @@
 #include <imgui.h>
 
 TP1_Ex5_MeshViewer::TP1_Ex5_MeshViewer(const char* title,
-                                        int width, int height,
-                                        std::vector<pmp::SurfaceMeshGL*>&  meshes,
-                                        std::vector<std::string>&          meshesName,
-                                        bool showgui) : pmp::MeshViewer(title,
-                                                                        width, height,
-                                                                        showgui),
-                                                                        meshes_(meshes),
-                                                                        meshesName_(meshesName),
-                                                                        selectedMeshId_(0)
+                                       int width, int height,
+                                       /* ! STUDENTS TODO ! */
+                                       // Apply an affine transformation to the input mesh (apply in place)
+                                       bool showgui) : pmp::MeshViewer(title,
+                                                                       width, height,
+                                                                       showgui)
+                                                                       /* ! STUDENTS TODO ! */
+                                                                       // Fill if required
 {
-    assert( !meshes.empty() );
-    mesh_ = *(meshes[selectedMeshId_]);
+    /* ! STUDENTS TODO ! */
+    // Fill if required
 
     // Update scene center and bounds
     pmp::BoundingBox bb = mesh_.bounds();
@@ -43,25 +42,6 @@ void TP1_Ex5_MeshViewer::process_imgui()
 {
     pmp::MeshViewer::process_imgui();
 
-    if( ImGui::BeginCombo("Displayed mesh", meshesName_.at(0).c_str()) )
-    {
-        for(size_t i = 0; i < meshesName_.size() ; i++ )
-        {
-            const bool is_selected = ( selectedMeshId_ == i );
-
-            if( ImGui::Selectable(meshesName_[i].c_str(), is_selected) )
-            {
-                selectedMeshId_ = i;
-            }
-
-            // Set the initial focus when opening the combo (scrolling + keyboard navigation focus)
-            if( is_selected )
-                ImGui::SetItemDefaultFocus();
-        }
-        ImGui::EndCombo();
-
-        // Now set mesh_ to be the selected mesh
-        mesh_ = *(meshes_[selectedMeshId_]);
-        update_mesh();
-    }
+    /* ! STUDENTS TODO ! */
+    // Add a combobox and select the mesh to display
 }

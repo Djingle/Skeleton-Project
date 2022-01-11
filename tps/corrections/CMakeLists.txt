@@ -1,8 +1,14 @@
 # Add include directories of the project
+message(STATUS "Here ${CMAKE_CURRENT_SOURCE_DIR}")
 include_directories("${CMAKE_CURRENT_SOURCE_DIR}/include/")
 
+get_property(dirs DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY INCLUDE_DIRECTORIES)
+foreach(dir ${dirs})
+  message(STATUS "dir='${dir}'")
+endforeach()
+
 # Add all the cpp sources of the src directory
-file(GLOB TP_TOOLS_SRC "${CMAKE_CURRENT_SOURCE_DIR}//src/*.cpp")
+file(GLOB TP_TOOLS_SRC "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp")
 set(CLI_TOOLS_SRC "${CMAKE_CURRENT_SOURCE_DIR}/src/cli_tools.cpp")
 
 # List all the cpp files in the app folder

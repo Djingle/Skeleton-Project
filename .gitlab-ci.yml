@@ -28,8 +28,8 @@ build:
   - cd ../../../
   - mkdir build
   - cd build
-  - cmake -S ../ -B ./
+  - cmake -S ../ -B ./ -D BUILD_CORRECTIONS=TRUE -D BUILD_STUDENTS=TRUE
   - cmake --build ./
   artifacts:
     paths:
-      - ./tps/tp*
+      - ./tps/corrections/bin/
