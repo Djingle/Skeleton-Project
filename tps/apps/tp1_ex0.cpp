@@ -41,14 +41,11 @@ int main(int argc, char** argv)
     }    
     // ****************************************************************************************
 
+    /* ! STUDENTS TODO ! */
     // Load the input mesh
-    pmp::SurfaceMesh inputMesh;
-    inputMesh.read(inputMeshPath);
-    std::cout << "Successfully loaded mesh from \"" << inputMeshPath << "\"" << std::endl;
 
-    // Write the output mesh
-    inputMesh.write(outputMeshPath);
-    std::cout << "Successfully saved mesh in \"" << outputMeshPath << "\"" << std::endl;
+    /* ! STUDENTS TODO ! */
+    // Write the input mesh to an output file
 
     return 0;
 }

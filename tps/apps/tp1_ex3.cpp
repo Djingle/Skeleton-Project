@@ -109,16 +109,8 @@ int main(int argc, char** argv)
     inputMesh.read(inputMeshPath);
     std::cout << "Successfully loaded mesh from \"" << inputMeshPath << "\"" << std::endl;
 
-    // Constructs the PMP affine transformation from coeffiients
-    pmp::Mat4<float> affineTrasformation(coeff11, coeff12, coeff13, coeff14,
-                                         coeff21, coeff22, coeff23, coeff24,
-                                         coeff31, coeff32, coeff33, coeff34,
-                                         coeff41, coeff42, coeff43, coeff44);
-    std::cout << "Affine transformation:\n"
-              << "----------------------\n"
-              << affineTrasformation << std::endl;
-
-    transformMesh(inputMesh, affineTrasformation);
+    /* ! STUDENTS TODO ! */
+    // Constructs the PMP affine transformation from coeffiients in an object named affineTransformation, display it, and apply the transformation
 
     // Write the output mesh
     inputMesh.write(outputMeshPath);

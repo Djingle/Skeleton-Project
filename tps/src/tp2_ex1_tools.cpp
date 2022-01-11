@@ -3,8 +3,6 @@
 #include <queue>
 #include <random>
 
-#include <pmp/algorithms/SurfaceTriangulation.h>
-
 #include <imgui.h>
 
 TP2_Ex1_MeshViewer::TP2_Ex1_MeshViewer(const char* title,
@@ -39,34 +37,13 @@ TP2_Ex1_MeshViewer::TP2_Ex1_MeshViewer(const char* title,
 
 void TP2_Ex1_MeshViewer::process_imgui()
 {
-    pmp::MeshViewer::process_imgui();
-    
-    if( ImGui::Button("Color non triangular faces") )
-    {
-        colorNonTriangularFaces(mesh_);
-        update_mesh();
-    }
-
-    if( ImGui::Button("Triangulate mesh") )
-    {
-        auto fColors = mesh_.face_property<pmp::Color>("f:color");
-        mesh_.remove_face_property<pmp::Color>(fColors);
-        pmp::SurfaceTriangulation triangulation(mesh_);
-        triangulation.triangulate();
-        update_mesh();
-    }
+    /* ! STUDENTS TODO ! */
+    // Add one button triggering the colorization of non triangular faces
+    // Add one button triggering the triangularization of the mesh (use an algorithm from the "algorithm" module)
 }
 
 void colorNonTriangularFaces(pmp::SurfaceMesh& mesh)
 {
-    auto fcolors = mesh.face_property<pmp::Color>("f:color", pmp::Color(0.5, 1.0, 0.5));
-
-    for( auto const& f : mesh.faces() )
-    {
-        size_t nVerticesInCurrFace = mesh.valence(f);
-        if( nVerticesInCurrFace > 3 )
-        {
-            fcolors[f] = pmp::Color(1.0, 0.5, 0.5);
-        }
-    }
+    /* ! STUDENTS TODO ! */
+    // Color the non triangulated faces in a color (e.g. in red) and the triangulated faces in another color (e.g. green)
 }

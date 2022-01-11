@@ -19,7 +19,6 @@ void printUsage(int argc,
 
 /**
  * @brief Waits for the user to feed something to the standard input
- * 
  */
 void waitUserInput();
 

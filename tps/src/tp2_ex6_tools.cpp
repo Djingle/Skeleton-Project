@@ -13,7 +13,8 @@ TP2_Ex6_MeshViewer::TP2_Ex6_MeshViewer(const char* title,
                                                                         showgui)
 {
     mesh_   = mesh;
-    sg_     = new pmp::SurfaceGeodesic(mesh_);
+    /* ! STUDENTS TODO ! */
+    // Fill if required
 
     // Update scene center and bounds
     pmp::BoundingBox bb = mesh_.bounds();
@@ -38,79 +39,29 @@ TP2_Ex6_MeshViewer::TP2_Ex6_MeshViewer(const char* title,
 
 TP2_Ex6_MeshViewer::~TP2_Ex6_MeshViewer()
 {
-    delete sg_;
+    /* ! STUDENTS TODO ! */
+    // Fill if required
 }
 
 void TP2_Ex6_MeshViewer::process_imgui()
 {
     pmp::MeshViewer::process_imgui();
 
-    if( ImGui::Button("Compute geodesics") )
-    {
-        std::vector<pmp::Vertex> seed{begVertex_};
-        sg_->compute(seed);
-        colorVerticesPerGeodesic(mesh_, sg_);
-        update_mesh();
-    }
+    /* ! STUDENTS TODO ! */
+    // Add a button trigerring the computation of the geodesic distance from each vertex to a querry source vertex
 }
 
 void TP2_Ex6_MeshViewer::mouse(int button, int action, int mods)
 {
-    if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS)
-    {
-        double x, y;
-        cursor_pos(x, y);
-        pmp::Vertex vPick = pick_vertex( static_cast<int>(x), static_cast<int>(y) );
-        if( mesh_.is_valid(vPick) )
-        {
-            auto vColors = mesh_.vertex_property<pmp::Color>("v:color");
-            for( auto const& v : mesh_.vertices() )
-            {
-                vColors[v] = pmp::Color(0.3, 0.3, 0.3);
-            }
-
-            if( mesh_.is_valid(begVertex_) )
-            {
-                vColors[begVertex_] = pmp::Color(0.3, 0.3, 0.3);
-            }
-
-            begVertex_ = vPick;
-            vColors[begVertex_] = pmp::Color(1.0, 0.0, 0.0);
-            update_mesh();
-        }
-    }
+    /* ! STUDENTS TODO ! */
+    // Get the vertex under a user's left click and color it in red
 }
 
-void colorVerticesPerGeodesic(pmp::SurfaceMesh&             mesh,
-                              const pmp::SurfaceGeodesic*   sgPtr)
+void colorVerticesPerGeodesic(pmp::SurfaceMesh&             mesh
+                              /* ! STUDENTS TODO ! */
+                              // Fill if required
+                              )
 {
-    const pmp::SurfaceGeodesic& sg = *sgPtr;
-
-    std::vector<float> vGeodesics;
-    vGeodesics.reserve(mesh.n_vertices());
-    for( auto v : mesh.vertices() )
-    {
-        vGeodesics.push_back(sg(v));
-    }
-    std::sort(vGeodesics.begin(), vGeodesics.end());
-
-    float vmin  = vGeodesics.front();
-    float vmax  = vGeodesics.back();
-    float range = vmax - vmin;
-    std::cout << vmin << " et " << vmax << std::endl;
-
-    // Convert to colors
-    float hue;
-    float sat = 1;
-    float val = 1;
-    float r, g, b;
-    auto vColors = mesh.vertex_property<pmp::Color>("v:color");
-    for( auto v : mesh.vertices() )
-    {
-        // min = 0 degres, max = 270 degres = 2/3
-        hue = (2.0/3.0) * ( 1 - ((sg(v) - vmin)  / range ));
-        ImGui::ColorConvertHSVtoRGB(hue, sat, val, r, g, b);
-        vColors[v] = pmp::Color(r, g, b);
-        std::cout << sg(v) << " donne " << hue * 360 << std::endl;
-    }
+    /* ! STUDENTS TODO ! */
+    // Color each vertex according to its geodesic distance to a source vertex
 }

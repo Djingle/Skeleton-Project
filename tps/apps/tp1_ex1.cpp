@@ -57,9 +57,7 @@ int main(int argc, char** argv)
     // ****************************************************************************************
     // B - Print vertices
     // ****************************************************************************************
-    questionB_printMeshVerticesV1(inputMesh, nMaxVerticesToPrint);
-    // questionB_printMeshVerticesV2(inputMesh, nMaxVerticesToPrint);
-    // questionB_printMeshVerticesV3(inputMesh, nMaxVerticesToPrint);
+    questionB_printMeshVertices(inputMesh, nMaxVerticesToPrint);
     
     // Wait for user input before continuing
     waitUserInput();

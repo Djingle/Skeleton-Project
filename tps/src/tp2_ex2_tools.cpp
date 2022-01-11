@@ -3,8 +3,6 @@
 #include <queue>
 #include <random>
 
-#include <pmp/algorithms/SurfaceHoleFilling.h>
-
 #include <imgui.h>
 
 TP2_Ex2_MeshViewer::TP2_Ex2_MeshViewer(const char* title,
@@ -67,82 +65,22 @@ void TP2_Ex2_MeshViewer::process_imgui()
 
 void colorBorderFaces(pmp::SurfaceMesh& mesh)
 {
-    auto fcolors = mesh.face_property<pmp::Color>("f:color", pmp::Color(0.5, 1.0, 0.5));
-
-    for( auto const& f : mesh.faces() )
-    {
-        if( mesh.is_boundary(f) )
-        {
-            fcolors[f] = pmp::Color(1.0, 0.5, 0.5);
-        }
-    }
+    /* ! STUDENTS TODO ! */
+    // Color the bordering faces of a mesh in red
 }
 
 void fillHoles(pmp::SurfaceMesh& mesh)
 {
-    pmp::SurfaceHoleFilling shf(mesh);
-
-    for( auto const& f : mesh.faces() )
-    {
-        if( mesh.is_boundary(f) )
-        {
-            for( auto const& he : mesh.halfedges() )
-            {
-                if( mesh.is_boundary(he) )
-                {
-                    shf.fill_hole( he );
-                }
-            }
-        }
-    }
+    /* ! STUDENTS TODO ! */
+    // Fill the holes in the mesh using the "algorithm" module
 }
 
 void labelVerticesPerConnectedComponent(pmp::SurfaceMesh&       mesh,
                                         const std::string&      ccLabelStoragePropertyName,
                                         std::vector< size_t >&  outNVerticesInCc)
 {
-    outNVerticesInCc.clear();
-
-    auto visitedFlags = mesh.vertex_property<bool>("v:visited", 0);
-    auto ccLabel      = mesh.vertex_property<size_t>(ccLabelStoragePropertyName, 0);
-
-    size_t currCcLabel = 0;
-
-    for( auto ccStartV : mesh.vertices() )
-    {
-        if( visitedFlags[ccStartV] == false )
-        {
-            size_t nVerticesInCc = 0;
-
-            std::queue<pmp::Vertex> awaiting;
-            pmp::Vertex v0 = ccStartV;
-
-            awaiting.push(v0);
-            visitedFlags[v0] = true;
-
-            while( !awaiting.empty() )
-            {
-                pmp::Vertex v = awaiting.front();
-                awaiting.pop();
-
-                ccLabel[v] = currCcLabel;
-                nVerticesInCc++;
-
-                pmp::SurfaceMesh::VertexAroundVertexCirculator vavc(&mesh, v);
-                for( auto const& nv : vavc )
-                {
-                    if( visitedFlags[nv] == false )
-                    {
-                        awaiting.push(nv);
-                        visitedFlags[nv] = true;
-                    }
-                }
-            }
-            
-            outNVerticesInCc.push_back(nVerticesInCc);
-            currCcLabel++;
-        }
-    }
+    /* ! STUDENTS TODO ! */
+    // See tp1_ex7.cpp + outputs a vector containing the number of vertices in each connected component
 }
 
 void removeSmallConnectedComponents(pmp::SurfaceMesh&       mesh,
@@ -150,15 +88,6 @@ void removeSmallConnectedComponents(pmp::SurfaceMesh&       mesh,
                                     std::vector< size_t >&  nVerticesInCc,
                                     size_t                  nVerticesMin)
 {
-    auto ccLabelProp = mesh.vertex_property<size_t>(ccLabelStoragePropertyName);
-
-    for( auto const& v : mesh.vertices() )
-    {
-        if( nVerticesInCc[ccLabelProp[v]] < nVerticesMin )
-        {
-            mesh.delete_vertex(v);
-        }
-    }
-
-    mesh.garbage_collection();
+    /* ! STUDENTS TODO ! */
+    // Remove all vertices belonging to a connected component with less than nVerticesMin vertices
 }

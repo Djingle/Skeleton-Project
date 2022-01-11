@@ -41,24 +41,10 @@ int main(int argc, char** argv)
     inputMesh.read(inputMeshPath);
     std::cout << "Successfully loaded mesh from \"" << inputMeshPath << "\"" << std::endl;
 
-    if( inputMesh.is_triangle_mesh() )
-    {
-        std::cout << "The loaded mesh is a triangle mesh." << std::endl;
-    }
-    else
-    {
-        std::cout << "The loaded mesh is NOT a triangle mesh." << std::endl;
-    }
+    /* ! STUDENTS TODO ! */
+    // Test if the mesh is triangular and print the result
+    // Test if the mesh is watertight and print the result
 
-    if( isWatertight(inputMesh) )
-    {
-        std::cout << "The loaded mesh is watertight." << std::endl;
-    }
-    else
-    {
-        std::cout << "The loaded mesh is NOT watertight." << std::endl;
-    }
-    
     // Instanciate a mesh viewer and attach the input mesh
     std::string winTitle = "TP 2 - Ex.2 - Interface graphique et visualisation";
     int winWidth         = 800;

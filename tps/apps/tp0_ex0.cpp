@@ -8,12 +8,8 @@ int main(int argc, char** argv)
     // Set required arguments
     std::vector< ArgPair > requiredArgs;
 
-    requiredArgs.push_back( ArgPair("shortNameArg1",
-                                    "Description of argument 1") );
-    requiredArgs.push_back( ArgPair("shortNameArg2",
-                                    "Description of argument 2") );
-    requiredArgs.push_back( ArgPair("shortNameArg3",
-                                    "Description of argument 3") );
+    /* ! STUDENTS TODO ! */
+    // Add three parameters of types int, double and string
 
     // Check command line validity
     if( (size_t)argc != requiredArgs.size()+1 )
@@ -25,14 +21,12 @@ int main(int argc, char** argv)
 
     // Get arguments from command line
     int         iArg  = 1;
-    int         vArg1;
-    double      vArg2;
-    std::string vArg3;
+    /* ! STUDENTS TODO ! */
+    // Declare your parameters here to store their value in a variable
     try
     {
-        vArg1 = std::stoi(argv[iArg++]);
-        vArg2 = std::stod(argv[iArg++]);
-        vArg3 = argv[iArg++];
+        /* ! STUDENTS TODO ! */
+        // Get the parameters value
     }
     catch(const std::exception& e)
     {
@@ -43,9 +37,8 @@ int main(int argc, char** argv)
     }    
     // ****************************************************************************************
 
-    std::cout << "Arg1: " << vArg1 << "\n"
-              << "Arg2: " << vArg2 << "\n"
-              << "Arg3: " << vArg3 << std::endl;
+    /* ! STUDENTS TODO ! */
+    // Print the parameters to console
 
     return 0;
 }

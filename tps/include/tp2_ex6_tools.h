@@ -19,11 +19,13 @@ public:
     void mouse(int button, int action, int mods);
 
 private:
-    pmp::Vertex           begVertex_;
-    pmp::SurfaceGeodesic* sg_;
+    /* ! STUDENTS TODO ! */
+    // Add members if required
 };
 
-void colorVerticesPerGeodesic(pmp::SurfaceMesh&             mesh,
-                              const pmp::SurfaceGeodesic*   sgPtr);
+void colorVerticesPerGeodesic(pmp::SurfaceMesh&             mesh
+                              /* ! STUDENTS TODO ! */
+                              // Fill if required
+                              );
 
 #endif // TP2_EX6_TOOLS_H

@@ -24,137 +24,76 @@ void printFace(const pmp::SurfaceMesh* const mesh,
 void questionA_printVerticesOfHalfEdge(const pmp::SurfaceMesh* const mesh,
                                        const pmp::Halfedge&          querryHE)
 {
-    std::cout << "Source vertex of half-Edge " << querryHE << ":\n"
-              << "------------------------------\n"
-              << mesh->from_vertex(querryHE) << std::endl;
-    std::cout << "Target vertex of half-Edge " << querryHE << ":\n"
-              << "------------------------------\n"
-              << mesh->to_vertex(querryHE) << std::endl;
+    /* ! STUDENTS TODO ! */
+    // Print the vertices of a querry half-edge
 }
 
 void questionA_printVerticesOfOppositeHalfEdge(const pmp::SurfaceMesh* const mesh,
                                                const pmp::Halfedge&          querryHE)
 {
-    pmp::Halfedge oppositeHE = mesh->opposite_halfedge(querryHE);
-
-    std::cout << "Opposite half-edge of " << querryHE << ":\n"
-              << "-------------------------" << std::endl;
-    printHalfEdge(mesh, oppositeHE, "  ");
+    /* ! STUDENTS TODO ! */
+    // Print the opposite half-edge of a querry half-edge
 }
 
 void questionA_printVerticesOfNextHalfEdge(const pmp::SurfaceMesh* const mesh,
                                            const pmp::Halfedge&          querryHE)
 {
-    pmp::Halfedge nextHE = mesh->next_halfedge(querryHE);
-
-    std::cout << "Next half-edge of " << querryHE << ":\n"
-              << "---------------------" << std::endl;
-    printHalfEdge(mesh, nextHE, "  ");
+    /* ! STUDENTS TODO ! */
+    // Print the next half-edge of a querry half-edge
 }
 
 void questionA_printVerticesOfPreviousHalfEdge(const pmp::SurfaceMesh* const mesh,
                                                const pmp::Halfedge&          querryHE)
 {
-    pmp::Halfedge prevHE = mesh->next_halfedge(querryHE);
-
-    std::cout << "Previous half-edge of " << querryHE << ":\n"
-              << "-------------------------" << std::endl;
-    printHalfEdge(mesh, prevHE, "  ");
+    /* ! STUDENTS TODO ! */
+    // Print the previous half-edge of a querry half-edge
 }
 
 void questionA_printIncidentFaceOfHalfEdge(const pmp::SurfaceMesh* const mesh,
                                            const pmp::Halfedge&          querryHE)
 {
-    std::cout << "Incident face of half-Edge " << querryHE << ":\n"
-              << "------------------------------" << std::endl;
-    printFace(mesh, mesh->face(querryHE), "  ");
+    /* ! STUDENTS TODO ! */
+    // Print the face attached to a querry half-edge
 }
 
 void questionB_printVerticesAroundVertex(const pmp::SurfaceMesh* const mesh,
                                          const pmp::Vertex&            querryV)
 {
-    std::cout << "Vertices around vertex " << querryV << ":\n"
-              << "--------------------------" << std::endl;
-
-    pmp::SurfaceMesh::VertexAroundVertexCirculator vavc(mesh, querryV);
-    for( auto const& nv : vavc )
-    {
-        std::cout << "  Vertex " << nv << std::endl;
-    }
+    /* ! STUDENTS TODO ! */
+    // Print the vertices that are neighbours to a querry vertex (use circulators)
 }
 
 void questionB_printHalfEdgesAroundVertex(const pmp::SurfaceMesh* const mesh,
                                           const pmp::Vertex&            querryV)
 {
-    std::cout << "Half-Edges around vertex " << querryV << ":\n"
-              << "----------------------------" << std::endl;
-
-    pmp::SurfaceMesh::HalfedgeAroundVertexCirculator heavc(mesh, querryV);
-    for( auto const& nhe : heavc )
-    {
-        std::cout << "  Half-Edge " << nhe << " (" << mesh->from_vertex(nhe) << " to " << mesh->to_vertex(nhe) << ")" << std::endl;
-    }
+    /* ! STUDENTS TODO ! */
+    // Print the half-edges that are going from a querry vertex (use circulators)
 }
 
 void questionB_printFacesAroundVertex(const pmp::SurfaceMesh* const mesh,
                                       const pmp::Vertex&            querryV)
 {
-    std::cout << "Faces around vertex " << querryV << ":\n"
-              << "-----------------------" << std::endl;
-
-    pmp::SurfaceMesh::FaceAroundVertexCirculator favc(mesh, querryV);
-    for( auto const& nf : favc )
-    {
-        std::cout << "  Face " << nf << " made of:\n    ";
-
-        pmp::SurfaceMesh::VertexAroundFaceCirculator vafc = mesh->vertices(nf);
-        for( auto const& nv : vafc )
-        {
-            std::cout << nv << " ";
-        }
-        std::cout << std::endl;
-    }
+    /* ! STUDENTS TODO ! */
+    // Print the faces that contain a querry vertex (use circulators)
 }
 
 void questionC_printVerticesAroundFace(const pmp::SurfaceMesh* const mesh,
                                        const pmp::Face&              querryF)
 {
-    std::cout << "Vertices around face " << querryF << ":\n"
-              << "------------------------" << std::endl;
-
-    pmp::SurfaceMesh::VertexAroundFaceCirculator vafc(mesh, querryF);
-    for( auto nv : vafc )
-    {
-        std::cout << "  Vertex " << nv << std::endl;
-    }
+    /* ! STUDENTS TODO ! */
+    // Print the vertices of a querry face (use circulators)
 }
 
 void questionC_printHalfEdgesAroundFace(const pmp::SurfaceMesh* const mesh,
                                         const pmp::Face&              querryF)
 {
-    std::cout << "Half-Edges around face " << querryF << ":\n"
-              << "--------------------------" << std::endl;
-
-    pmp::SurfaceMesh::HalfedgeAroundFaceCirculator heafc(mesh, querryF);
-    for( auto nhe : heafc )
-    {
-        std::cout << "  Half-Edge " << nhe << " (" << mesh->from_vertex(nhe) << " to " << mesh->to_vertex(nhe) << ")" << std::endl;
-    }
+    /* ! STUDENTS TODO ! */
+    // Print the half-edges of a querry face (use circulators)
 }
 
 void questionC_printFacesAroundFace(const pmp::SurfaceMesh* const mesh,
                                     const pmp::Face&              querryF)
 {
-    std::cout << "Faces around face " << querryF << ":\n"
-              << "---------------------" << std::endl;
-
-    pmp::SurfaceMesh::HalfedgeAroundFaceCirculator heafc(mesh, querryF);
-    for( auto nhe : heafc )
-    {
-        auto oppositeHe = mesh->opposite_halfedge(nhe);
-        if( !mesh->is_boundary(oppositeHe) )
-        {
-            printFace(mesh, mesh->face(oppositeHe), "  ");
-        }
-    }
+    /* ! STUDENTS TODO ! */
+    // Print the faces that are neighbours to a querry face (use circulators)
 }

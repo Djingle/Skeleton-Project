@@ -41,9 +41,6 @@ void TP2_Ex5_MeshViewer::process_imgui()
 {
     pmp::MeshViewer::process_imgui();
     
-    if( ImGui::Button("Compute dual") )
-    {
-        pmp::dual(mesh_);
-        update_mesh();
-    }
+    /* ! STUDENTS TODO ! */
+    // Add a button that computes the dual mesh (in place)
 }

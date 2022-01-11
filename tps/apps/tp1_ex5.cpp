@@ -42,29 +42,27 @@ int main(int argc, char** argv)
     }    
     // ****************************************************************************************
 
-    // Load the input meshes
-    std::vector<pmp::SurfaceMeshGL*> meshes;
-    std::vector<std::string>         meshesName;
+    /* ! STUDENTS TODO ! */
+    // Store each mesh and its name in a std::vector
 
+    // Load the input meshes
     pmp::SurfaceMeshGL inputMesh1;
     inputMesh1.read(inputMeshPath1);
     std::cout << "Successfully loaded mesh from \"" << inputMeshPath1 << "\"" << std::endl;
-    meshes.push_back(&inputMesh1);
-    meshesName.push_back(inputMeshPath1);
+    
 
     pmp::SurfaceMeshGL inputMesh2;
     inputMesh2.read(inputMeshPath2);
     std::cout << "Successfully loaded mesh from \"" << inputMeshPath2 << "\"" << std::endl;
-    meshes.push_back(&inputMesh2);
-    meshesName.push_back(inputMeshPath2);
+    
 
     // Instanciate a mesh viewer and attach the input mesh
     std::string winTitle = "TP 1 - Ex.5 - Interface graphique et visualisation";
     int winWidth         = 800;
     int winHeight        = 600;
-    TP1_Ex5_MeshViewer meshViewer(winTitle.c_str(),
-                                  winWidth, winHeight,
-                                  meshes, meshesName);
+    /* ! STUDENTS TODO ! */
+    // Instanciate the viewer according to your previous code
+    TP1_Ex5_MeshViewer meshViewer();
 
     // Start main window loop
     meshViewer.run();

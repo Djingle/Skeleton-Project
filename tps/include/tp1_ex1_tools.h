@@ -6,14 +6,8 @@
 void questionA_printGeneralInformationAboutMesh(const pmp::SurfaceMesh&   mesh,
                                                 const std::string&        meshName);
 
-void questionB_printMeshVerticesV1(const pmp::SurfaceMesh&    mesh,
-                                   size_t                     nVerticesToPrint=0);
-
-void questionB_printMeshVerticesV2(const pmp::SurfaceMesh&    mesh,
-                                   size_t                     nVerticesToPrint=0);
-
-void questionB_printMeshVerticesV3(const pmp::SurfaceMesh&    mesh,
-                                   size_t                     nVerticesToPrint=0);
+void questionB_printMeshVertices(const pmp::SurfaceMesh&    mesh,
+                                 size_t                     nVerticesToPrint=0);
 
 void questionC_printMeshHalfEdges(const pmp::SurfaceMesh&   mesh,
                                   size_t                    nHalfEdgesToPrint=0);

@@ -29,7 +29,7 @@ Pour réaliser ces TPs nous vous conseillons, dans l'ordre, de:
     ```
     > **Note :** Au besoin vous pouvez utiliser **(Unix/Linux/macOs uniquement)** la commande suivante à partir de la racine du pojet pour repérer ces commentaires :
     ```
-    grep -r "/* ! STUDENTS TODO ! */" ./tps/
+    grep -r "/\* \! STUDENTS TODO \! \*/" ./tps/
     ```
 
 3. **Linux uniquement (pour le moment) :** Vous pouvez avoir un aperçu de ce qu'on attend de vous en exécutant les programmes précompilés situés dans `tps/corrections/bin/`

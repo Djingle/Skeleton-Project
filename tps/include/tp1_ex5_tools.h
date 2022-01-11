@@ -16,8 +16,8 @@ public:
 
 private:
     std::vector<pmp::SurfaceMeshGL*>& meshes_;
-    std::vector<std::string>&               meshesName_;
-    int                                     selectedMeshId_;
+    std::vector<std::string>&         meshesName_;
+    int                               selectedMeshId_;
 };
 
 #endif // TP1_EX5_TOOLS_H

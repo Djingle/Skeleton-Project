@@ -62,7 +62,7 @@ void printUsage(int                           argc,
 
 void waitUserInput()
 {
-    // Wait for user input before going on              
+    // Wait for user input in standard input before going on
     std::cout << "Program paused, press any key to continue." << std::endl;
     std::cin.get();    
 }

@@ -43,7 +43,7 @@ int main(int argc, char** argv)
     std::cout << "Successfully loaded mesh from \"" << inputMeshPath << "\"" << std::endl;
 
     // Instanciate a mesh viewer and attach the input mesh
-    std::string winTitle = "TP 2 - Ex.6 - Godesics";
+    std::string winTitle = "TP 2 - Ex.6 - Geodesics";
     int winWidth         = 800;
     int winHeight        = 600;
     TP2_Ex6_MeshViewer meshViewer(winTitle.c_str(),

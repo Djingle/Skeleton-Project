@@ -45,8 +45,8 @@ int main(int argc, char** argv)
     printBoundingBoxSize(inputMesh);
     printBoundingBoxDiag(inputMesh);
     printMeshTotalArea(inputMesh);
-    // printMeshVerticesCentroid(inputMesh);
-    // printMeshVolume(inputMesh);
+    printMeshVerticesCentroid(inputMesh);
+    printMeshVolume(inputMesh);
     printEulerNumberAndGenus(inputMesh);
 
     return 0;

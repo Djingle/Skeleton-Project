@@ -45,7 +45,7 @@ int main(int argc, char** argv)
     const pmp::SurfaceMeshGL* const inputMeshPtr = &inputMesh;
 
     // Instanciate a mesh viewer and attach the input mesh
-    std::string winTitle = "TP 1 - Ex.3 - Interface graphique et visualisation";
+    std::string winTitle = "TP 1 - Ex.4 - Interface graphique et visualisation";
     int winWidth         = 800;
     int winHeight        = 600;
     TP1_Ex4_MeshViewer meshViewer(winTitle.c_str(),

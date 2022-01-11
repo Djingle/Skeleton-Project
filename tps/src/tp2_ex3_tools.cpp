@@ -41,43 +41,18 @@ void TP2_Ex3_MeshViewer::process_imgui()
 {
     pmp::MeshViewer::process_imgui();
 
-    if( ImGui::Button("Test manifoldness") )
-    {
-        colorVerticesPerManifoldness(mesh_);
-        update_mesh();
-    }
+    /* ! STUDENTS TODO ! */
+    // Add a button triggering the colorization of vertices based on their manifoldness
 }
 
 void colorVerticesPerManifoldness(pmp::SurfaceMesh& mesh)
 {
-    size_t nNonManifold = 0;
-
-    auto vColors = mesh.vertex_property<pmp::Color>("v:color");
-    for( auto const& v : mesh.vertices() )
-    {
-        if( mesh.is_manifold(v) )
-        {
-            vColors[v] = pmp::Color(0.0, 1.0, 0.0);
-        }
-        else
-        {
-            vColors[v] = pmp::Color(1.0, 0.0, 0.0);
-        }
-
-    }
-
-    std::cout << "The mesh contains " << nNonManifold << " non manifold vertices" << std::endl;
+    /* ! STUDENTS TODO ! */
+    // Color vertices based on their manifoldness
 }
 
 bool isWatertight(const pmp::SurfaceMesh& mesh)
 {
-    for( auto const& he : mesh.halfedges() )
-    {
-        if( mesh.is_boundary(he) )
-        {
-            return false;
-        }
-    }
-
-    return true;
+    /* ! STUDENTS TODO ! */
+    // Return true if the mesh is watertight, false otherwise
 }

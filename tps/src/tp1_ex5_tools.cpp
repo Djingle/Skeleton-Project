@@ -16,7 +16,6 @@ TP1_Ex5_MeshViewer::TP1_Ex5_MeshViewer(const char* title,
                                                                         selectedMeshId_(0)
 {
     assert( !meshes.empty() );
-
     mesh_ = *(meshes[selectedMeshId_]);
 
     // Update scene center and bounds

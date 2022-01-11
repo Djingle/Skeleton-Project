@@ -3,8 +3,6 @@
 void transformMesh(pmp::SurfaceMesh&        mesh,
                    const pmp::Mat4<float>&  affineTransform)
 {
-    for(auto const& v : mesh.vertices())
-    {
-        mesh.position(v) = pmp::affine_transform(affineTransform, mesh.position(v));
-    }
+    /* ! STUDENTS TODO ! */
+    // Apply an affine transformation to the input mesh (apply in place)
 }
