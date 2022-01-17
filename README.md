@@ -15,9 +15,9 @@ Vous mettrez ainsi en application vos compétences acquises lors des TPs encadr�
 
 Cette série de TP se veut progressive et essaie de suivre une logique dans la création d'outils de base pour vos futurs projets.
 - **[Séance 1 :](tps/ennonces/tp1.md)** Prise en main du starter-kit, recherche de documentation, parcours de la structure en demi-arêtes du module *core* de PMP, et aperçu du module *visualization* de PMP
-- **[Séance 2 :](tps/ennonces/tp2.md)** Recherche de documentation, exploration du module *algorithms* de PMP
-- **Séance 3:** Algorithmes de remaillage
-- **Séance 4:** Algorithmes de simplification
+- **[Séance 2 :](tps/ennonces/tp2.md)** Recherche de documentation, exploration du module *algorithms* de PMP (1/3)
+- **Séance 3:** Algorithmes de remaillage (2/3)
+- **Séance 4:** Algorithmes de simplification (3/3)
 
 ## A faire dans l'ordre
 
@@ -29,7 +29,7 @@ Pour réaliser ces TPs nous vous conseillons, dans l'ordre, de:
     ```
     > **Note :** Au besoin vous pouvez utiliser **(Unix/Linux/macOs uniquement)** la commande suivante à partir de la racine du pojet pour repérer ces commentaires :
     ```
-    grep -r "/\* \! STUDENTS TODO \! \*/" ./tps/
+    grep --line-number -r "/\* \! STUDENTS TODO \! \*/" ./tps/
     ```
 
 3. **Linux uniquement (pour le moment) :** Vous pouvez avoir un aperçu de ce qu'on attend de vous en exécutant les programmes précompilés situés dans `tps/corrections/bin/`
@@ -145,11 +145,27 @@ avant de reprendre toutes les étapes de compilation (PMP + TP de Géométrie Nu
 
 ## Structure du projet
 
+Plusieurs informations concernant la structure de ce starter-kit vous ont été dévoilées dans ce README.
+Cette section reprends les points essentiels pour que vous puissiez chercher et trouver les fichiers qui vous sont d'intérêt.
+
+A la racine de ce dépôt vous trouverez 5 fichiers :
+- ***CMakeLists.txt*** : contient les éléments nécessaires à la configuration du projet de TP de Géométrie Numérique. Vous ne devriez pas avoir à y toucher, mais vous pouvez toujours expérimenter dessus.
+- ***.gitignore*** : fichier utilisé par git pour ignorer certains fichiers/dossiers. Permet d'éviter des ajouts de dossiers de build au dépôt par exemple. Vous n'avez pas à vous en occuper.
+- ***.gitlab-ci.yml*** : fichier utilisé par gitlab pour l'intégration continue. Vous n'avez pas à vous en occuper.
+- ***.gitmodules*** : fichier utilisé par git pour la gestion des sous-modules (pmp a été ajouté comme sous-module de ce dépôt). Vous n'avez pas à vous en occuper.
+- ***README.md*** : le README que vous êtes en train de parcourir.
+
+Vous trouverez également 5 dossiers :
+- ***data/*** : contient quelques maillages exemples sur lesquels tester vos programmes.
+- ***externals/*** : contient les bibliothèques externes; en l'occurrence : PMP et ses dépendances.
+- ***.git/*** : dossier réservé à git pour la gestion de versions.
+- ***override_pmp_files/*** : contient des fichiers de remplacement pour la bibliothèque PMP.
+- ***tps/*** : le coeur de ce starter-kit ! C'est ici que vous allez travailler principalement ! Vous y trouverez les énnoncés et des propositions de corrections dans les dossiers correspondants, et vous aurez à terminer le code des fichiers situés dans les sous-répertoires `include`, `src` et `apps`.
+
 ## Ajout de code source
 
 Il vous est possible d'ajouter du code de votre côté, en particulier du code "outil" dans les dossiers `geometrie_numerique_tps/tps/include/` et `geometrie_numerique_tps/tps/src/` pour les en-têtes (headers) et les sources respectivement.
-Tous les fichiers dans ces dossiers seront automatiquement compilés et liés aux programmes principaux placés dans le dossier `geometrie_numerique_tps/tps/apps/`.
-
-Il vous est aussi possible d'ajouter autant de programmes principaux que vous le souhaitez dans le dossier `geometrie_numerique_tps/tps/apps/`. Ceux-ci seront automatiquement compilés par la suite.
+Pour que vos fichiers additionnels soient compilés et liés à votre programme vous devrez cependant respecter une règle (simple !) :
+le nom de vos fichiers additionnels (dans `src` et `include`) doit commencer comme le nom du fichier contenant votre main (dans `apps`).
 
 > **Note :** ne pas oublier de reconfigurer le projet avec `cmake -S ../ -B ./`, puis de le recompiler avec `cmake --build ./` à chaque ajout de nouveau fichier.
