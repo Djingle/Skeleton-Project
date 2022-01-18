@@ -4,7 +4,7 @@ void questionA_printGeneralInformationAboutMesh(const pmp::SurfaceMesh&   mesh,
                                                 const std::string&        meshName)
 {
     /* ! STUDENTS TODO ! */
-    // Print the mesh name, its number of vertices, its number of adges, half-edges and faces in the standard output
+    // Print the mesh name, its number of vertices, its number of edges, half-edges and faces in the standard output
 }
 
 void questionB_printMeshVertices(const pmp::SurfaceMesh&    mesh,

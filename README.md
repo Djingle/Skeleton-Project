@@ -28,9 +28,22 @@ Pour réaliser ces TPs nous vous conseillons, dans l'ordre, de:
     /* ! STUDENTS TODO ! */
     ```
     > **Note :** Au besoin vous pouvez utiliser **(Unix/Linux/macOs uniquement)** la commande suivante à partir de la racine du pojet pour repérer ces commentaires :
-    ```
-    grep --line-number -r "/\* \! STUDENTS TODO \! \*/" ./tps/
-    ```
+    >```
+    >grep --line-number -r "/\* \! STUDENTS TODO \! \*/" ./tps/
+    >```
+    > Vous pouvez par exemple utiliser un pipe pour n'afficher que les résultats inclus dans le tp de votre choix. Par exemple, pour l'exercice 1 du tp 1 :
+    >```
+    >grep --line-number -r "/\* \! STUDENTS TODO \! \*/" ./tps/ | grep tp1_ex1
+    >```
+    >Renvera :
+    >```
+    >./tps/src/tp1_ex1_tools.cpp:6:    /* ! STUDENTS TODO ! */
+    >./tps/src/tp1_ex1_tools.cpp:13:    /* ! STUDENTS TODO ! */
+    >./tps/src/tp1_ex1_tools.cpp:20:    /* ! STUDENTS TODO ! */
+    >./tps/src/tp1_ex1_tools.cpp:27:    /* ! STUDENTS TODO ! */
+    >./tps/src/tp1_ex1_tools.cpp:34:    /* ! STUDENTS TODO ! */
+    >```
+    > Où vous lirez les numéros de lignes après les ":" suivant le nom de fichier
 
 3. **Linux uniquement (pour le moment) :** Vous pouvez avoir un aperçu de ce qu'on attend de vous en exécutant les programmes précompilés situés dans `tps/corrections/bin/`
 4. Des propositions de corrections sont disponibles dans les dossiers `tps/corrections/src/`, `tps/corrections/include/` et `tps/corrections/apps/`

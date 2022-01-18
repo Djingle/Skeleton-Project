@@ -1,20 +1,18 @@
-# Géométrie Numérique - TP 1
+# Géométrie Numérique - TP 1 : demi-arêtes et PMP *core*
 
 ## Objectifs théoriques
 
 - Manipuler une bibliothèque externe
 - Apprendre à chercher dans une documentation
-- Prendre en main la bibliothèque PMP
-- Comprendre la structure de maillage "Half-Edge" et manipuler les relations d'adjacence
+- Comprendre la structure de maillage en ***demi-arêtes*** et manipuler les relations d'adjacence
 
 ## Objectifs pratiques
 
+- Prendre en main la bibliothèque PMP
 - Charger et afficher un maillage polygonal
-- Ajouter des propriétés scalaires sur différents éléments du maillage (sommets et faces)
+- Ajouter des propriétés sur différents éléments du maillage (sommets et faces)
 - Visualiser ces propriétés en couleur
 - Détcter et visualiser les différentes composantes connexes d'un maillage
-
----
 
 ## La bibliothèque PMP
 
@@ -36,50 +34,73 @@ Finalement, vous trouverez des exemples pratiques écrits par l'équipe de déve
 
 ## Exercice 1 - Informations générales sur un maillage
 
-- A: Charger un maillage, afficher en console : le nombre de sommets, d'aretes et de faces
-- B: Afficher ses sommets (index et position)
-- C: Afficher ses helf edges
-- D: Afficher ses aretes
-- E: Afficher ses faces dans une console
+> Voir la [documentation de la classe SurfaceMesh](https://www.pmp-library.org/classpmp_1_1_surface_mesh.html).
+
+- Charger un maillage
+- Afficher son nombre de sommets, d'aretes et de faces
+- Afficher ses sommets (index et position)
+- Afficher ses demi-arêtes
+- Afficher ses arêtes
+- Afficher ses faces
 
 ### Exercice 2 - Découvrir la topologie du maillage (structure de Half-Edge)
 
-- A: Parcourir les arêtes adjacentes à une arête source
-- Parcourir les sommets voisins une arête source
-- Parcourir les faces adjacentes à une arête source
-- 
-- B : Parcourir les arêtes adjacentes à un sommet source
-- Parcourir les sommets voisins d'un sommet source
-- Parcourir les faces adjacentes à un sommet source
+> Voir le tutorial PMP pour les circulateurs et la documentation liée.
 
-- C: Parcourir les arêtes adjacentes à une face source
-- Parcourir les sommets voisins d'une face source
-- Parcourir les faces adjacentes à une face source
-
-- ## Exercice 3 - Modifier géométrie
+Les questions marquées d'un *(!)* comportent un risque potentiel. Quel est ce risque ?
 
 - Charger un maillage
-- Appliquer une transformation affine
+- Parcourir et afficher des éléments de topologie
+    - Demi-arêtes et adjacence
+        - Afficher les sommets d'une demi-arête source
+        - Afficher la demi-arête opposée à une demi-arête source
+        - Afficher la demi-arête suivante d'une demi-arête source (!)
+        - Afficher la demi-arête précédente d'une demi-arête source (!)
+        - Afficher la face attachée à une demi-arête source (!)
+    - Sommets et adjacence
+        - Afficher les sommets voisins d'un sommet source
+        - Afficher les demi-arêtes partant d'un sommet source
+        - Afficher les faces auxquelles appartient un sommet source
+    - Faces et adjacence
+        - Afficher les demi-arêtes composant une face source
+        - Afficher les faces voisines d'une face source
+
+- ## Exercice 3 - Modifier la géométrie
+
+> Chercher les transformations dans PMP.
+
+- Charger un maillage
+- Appliquer une transformation affine passée en argument
 - Sauvegarder le maillage transformé
 
-## Exercice 4 - Visualisation
+## Exercice 4 - Visualisation et couleurs
+
+> Voir la [documentation du module de visualisation](https://www.pmp-library.org/group__visualization.html).
+> Voir les exemples d'applications fournis avec PMP.
 
 - Charger un maillage
 - Afficher ses sommets, aretes et faces dans une GUI
 - Ajouter un bouton à la GUI permettant de colorer le maillage
 
-## Exercice 5 - Visualisation
+## Exercice 5 - Visualisation et GUI (bonus)
+
+> Fouiller le net pour plus d'infos sur la bibliothèque ImGui.
 
 - Charger deux maillages
 - Avoir une combo box qui selectionne lequel afficher
 
-## Exercice 6
+## Exercice 6 - Propriétés et coloration
+
+> Voir le tutorial PMP et chercher des infos sur les propriétés dans la documentation.
 
 - Charger un maillage
-- Colorer les sommets selon leur valence
-- Colorer les faces selon leur aire
+- Ajouter une propriété aux sommets qui stockera leur valence
+- Ajouter une propriété aux faces qui stockera leur aire
+- Ajouter des boutons à la GUI pour visualiser ces informations selon une carte de couleurs (proposition: utiliser la représentation HLS des couleurs pour obtenir une carte allant du bleu au rouge)
 
-## Exercice 7
+## Exercice 7 - Où tout s'assemble
+
+> Utiliser ce que vous avez construit jusqu'ici !
 
 - Charger un maillage
-- Identifier les composantes connexes et les afficher dans une couleur différente
+- Identifier les composantes connexes et les afficher dans une couleur différente lors du click utilisateur sur un bouton de la GUI.
