@@ -55,4 +55,5 @@ bool isWatertight(const pmp::SurfaceMesh& mesh)
 {
     /* ! STUDENTS TODO ! */
     // Return true if the mesh is watertight, false otherwise
+    return true;
 }
