@@ -16,8 +16,8 @@ Vous mettrez ainsi en application vos compétences acquises lors des TPs encadr�
 Cette série de TP se veut progressive et essaie de suivre une logique dans la création d'outils de base pour vos futurs projets.
 - **[Séance 1 :](tps/ennonces/tp1.md)** Prise en main du starter-kit, recherche de documentation, parcours de la structure en demi-arêtes du module *core* de PMP, et aperçu du module *visualization* de PMP
 - **[Séance 2 :](tps/ennonces/tp2.md)** Recherche de documentation, exploration du module *algorithms* de PMP (1/3)
-- **Séance 3:** Algorithmes de remaillage (2/3)
-- **Séance 4:** Algorithmes de simplification (3/3)
+- **Séance 3:** Algorithmes de remaillage et module *algorithms* de PMP (2/3)
+- **Séance 4:** Algorithmes de simplification et module *algorithms* de PMP (3/3)
 
 ## A faire dans l'ordre
 
@@ -121,8 +121,16 @@ set_target_properties(pmp PROPERTIES VERSION ${PMP_VERSION})
 
 2. Exécuter cmake pour configurer le projet
    ``` bash
-   cmake -S ../ -B ./
+   cmake -S ../ -B ./ -D BUILD_STUDENTS=TRUE
    ```
+   Détails :
+   - on appelle cmake (outil qui nous simplifie les compilations)
+   - en spécifiant avec `-S` ou se trouve le fichier `CMakeLists.txt` qui contient la configuration du projet
+   - en spécifiant avec `-B` dans quel dossier compiler le projet
+   - en spécifiant avec `-D` la valeur de l'option de compilation nommée `BUILD_STUDENTS`.
+   Pour info :
+   - vous pouvez également compiler les corrections en ajoutant aussi l'option `-D BUILD_CORRECTIONS=TRUE`.
+   - si votre CPU dispose de plusieurs coeurs, vous pouvez les utiliser pour paralléliser la compilation en ajoutant l'option `-j8` (remplacer 8 par le nombre de coeurs que vous souhaitez utiliser).
 
 3. Compiler la bibliothèque pmp:
     ``` bash
