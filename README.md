@@ -14,8 +14,8 @@ Vous mettrez ainsi en application vos compétences acquises lors des TPs encadr�
 ## Vue d'ensemble
 
 Cette série de TP se veut progressive et essaie de suivre une logique dans la création d'outils de base pour vos futurs projets.
-- **[Séance 1 :](tps/ennonces/tp1.md)** Prise en main du starter-kit, recherche de documentation, parcours de la structure en demi-arêtes du module *core* de PMP, et aperçu du module *visualization* de PMP
-- **[Séance 2 :](tps/ennonces/tp2.md)** Recherche de documentation, exploration du module *algorithms* de PMP (1/3)
+- **[Séance 1 :](tps/enonces/tp1.md)** Prise en main du starter-kit, recherche de documentation, parcours de la structure en demi-arêtes du module *core* de PMP, et aperçu du module *visualization* de PMP
+- **[Séance 2 :](tps/enonces/tp2.md)** Recherche de documentation, exploration du module *algorithms* de PMP (1/3)
 - **Séance 3:** Algorithmes de remaillage et module *algorithms* de PMP (2/3)
 - **Séance 4:** Algorithmes de simplification et module *algorithms* de PMP (3/3)
 
@@ -23,7 +23,7 @@ Cette série de TP se veut progressive et essaie de suivre une logique dans la c
 
 Pour réaliser ces TPs nous vous conseillons, dans l'ordre, de:
 1. Lire ce README (on ne le dira jamais assez, les README sont faits pour être lus :) ). Il vous donne la marche à suivre pour mettre en place votre environnement de développement (compiler PMP, configurer votre projet de TPs avec CMake, et compiler les sources de vos TPs).
-1. Lire la fiche du TP correspondant à la séance courante dans le dossier `tps/ennonces/` et faire les exercices demandés. Un squelette de code vous est fourni pour chaque TP dans les dossiers `tps/src`, `tps/include`, et `tps/apps` dans lesquels les parties à remplir sont identifiées par le commentaire suivant :
+1. Lire la fiche du TP correspondant à la séance courante dans le dossier `tps/enonces/` et faire les exercices demandés. Un squelette de code vous est fourni pour chaque TP dans les dossiers `tps/src`, `tps/include`, et `tps/apps` dans lesquels les parties à remplir sont identifiées par le commentaire suivant :
     ```
     /* ! STUDENTS TODO ! */
     ```
