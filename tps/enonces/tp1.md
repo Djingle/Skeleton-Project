@@ -70,7 +70,7 @@ Les questions marquées d'un *(!)* comportent un risque potentiel. Quel est ce r
 > Chercher les transformations dans PMP.
 
 - Charger un maillage
-- Appliquer une transformation affine passée en argument
+- Appliquer une transformation affine passée en argument **(alternative: vous pourrez aussi définir une transformation "en dur" dans votre code)**
 - Sauvegarder le maillage transformé
 
 ## Exercice 4 - Visualisation et couleurs
@@ -79,17 +79,18 @@ Les questions marquées d'un *(!)* comportent un risque potentiel. Quel est ce r
 > Voir les exemples d'applications fournis avec PMP.
 
 - Charger un maillage
-- Afficher ses sommets, aretes et faces dans une GUI
-- Ajouter un bouton à la GUI permettant de colorer le maillage
+- Colorer le maillage en ajoutant une propriété de couleur
+- Afficher le maillage coloré dans une fenêtre graphique
+- Ajouter un bouton à la GUI permettant de colorer un maillage non coloré précédemment **(optionnel)**
 
-## Exercice 5 - Visualisation et GUI (bonus)
+## Exercice 5 - Visualisation et GUI **(optionnel)**
 
 > Fouiller le net pour plus d'infos sur la bibliothèque ImGui.
 
 - Charger deux maillages
 - Avoir une combo box qui selectionne lequel afficher
 
-## Exercice 6 - Propriétés et coloration
+## Exercice 6 - Propriétés et coloration **(optionnel)**
 
 > Voir le [tutoriel](https://www.pmp-library.org/tutorial.html) PMP et chercher des infos sur les propriétés dans la documentation.
 
@@ -103,4 +104,5 @@ Les questions marquées d'un *(!)* comportent un risque potentiel. Quel est ce r
 > Utiliser ce que vous avez construit jusqu'ici !
 
 - Charger un maillage
-- Identifier les composantes connexes et les afficher dans une couleur différente lors du click utilisateur sur un bouton de la GUI.
+- Identifier les composantes connexes et les afficher dans une couleur différente
+- déclencher le calcul des composantes connexes par un click utilisateur sur un bouton de la GUI **(optionnel)**
