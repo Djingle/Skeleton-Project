@@ -45,7 +45,7 @@ Finalement, vous trouverez des exemples pratiques écrits par l'équipe de déve
 
 ### Exercice 2 - Découvrir la topologie du maillage (structure de Half-Edge)
 
-> Voir le tutorial PMP pour les circulateurs et la documentation liée.
+> Voir le [tutoriel](https://www.pmp-library.org/tutorial.html) PMP pour les circulateurs et la documentation liée.
 
 Les questions marquées d'un *(!)* comportent un risque potentiel. Quel est ce risque ?
 
@@ -91,7 +91,7 @@ Les questions marquées d'un *(!)* comportent un risque potentiel. Quel est ce r
 
 ## Exercice 6 - Propriétés et coloration
 
-> Voir le tutorial PMP et chercher des infos sur les propriétés dans la documentation.
+> Voir le [tutoriel](https://www.pmp-library.org/tutorial.html) PMP et chercher des infos sur les propriétés dans la documentation.
 
 - Charger un maillage
 - Ajouter une propriété aux sommets qui stockera leur valence
