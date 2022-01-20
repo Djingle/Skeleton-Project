@@ -1,4 +1,4 @@
-# Travaux pratiques Géométrie Numérique 2021 : starter-kit
+# Travaux pratiques Géométrie Numérique 2022 : starter-kit
 
 Nous vous proposons ce starter-kit pour les TPs de Géométrie Numérique pour que vous puissiez focaliser votre travail sur les parties essentielles du cours et éviter facilement les embûches liées à la compilation et autres détails qui mettent souvent des batons dans les roues lors du démarage d'un projet.
 
