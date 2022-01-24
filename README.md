@@ -19,6 +19,8 @@ Cette série de TP se veut progressive et essaie de suivre une logique dans la c
 - **Séance 3:** Algorithmes de remaillage et module *algorithms* de PMP (2/3)
 - **Séance 4:** Algorithmes de simplification et module *algorithms* de PMP (3/3)
 
+> **Note :** vous trouverez un ensemble de maillages au format OFF pour tester vos travaux à l'adresse suivante : https://seafile.unistra.fr/d/b630610d87af4e4e899e/
+
 ## A faire dans l'ordre
 
 Pour réaliser ces TPs nous vous conseillons, dans l'ordre, de:

@@ -30,7 +30,7 @@ Dans cet exercice, vous comparez attentivement les codes de ces trois méthodes 
 ## Exercice 2 : Préservation du volume
 
 Les méthodes de lissage peuvent mener à une perte de volume de l'objet entouré par la surface, comme vous l'avez peut-être constaté en appliquant les algorithmes précédents.
-Afinn de remédier à ce problème, deux solutions ont été proposées :
+Afin de remédier à ce problème, deux solutions ont été proposées :
 1. Taubin
 
     Taubin [2] propose d'alterner *iter* fois (*iter* = nombre d'itérations, choisi par l'utilisateur) entre :
@@ -41,6 +41,9 @@ Afinn de remédier à ce problème, deux solutions ont été proposées :
     Implémentez cet algorithme.
     Testez-le sur les fichiers OFF fournis, en faisant varier les paramètres
     λ et μ. μ doit être strictement supérieur à λ mais très proche.
+
+    > **Conseil :** modifier la classe `SurfaceSmoothing` de PMP pour que ses méthodes soient *protected*, créer une classe dérivée de `SurfaceSmoothing` qui réimplémente la méthode `explicit_smoothing` an ajoutant le paramètre $\lambda$ aux arguments.
+
 2. Desbrun
     
     Desbrun et al. [1] proposent d'ajouter une étape de correction des positions des sommets de la surface après un lissage laplacien, qu'il soit explicite ou implicite.
