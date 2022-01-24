@@ -14,11 +14,8 @@ public:
     void process_imgui();
 
 private:
-    bool        explicitLaplacianUniformWeights_{false};
-    int         explicitLaplacianNIter_{1};
-    pmp::Scalar implicitLaplacianTimeStep_{1E-4};
-    bool        implicitLaplacianUniformWeights_{false};
-    int         fairK_{2};
+    /* ! STUDENTS TODO ! */
+    // Complete if necessary
 };
 
 #endif // TP3_EX1_TOOLS_H

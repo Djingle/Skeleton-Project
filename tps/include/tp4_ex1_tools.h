@@ -14,7 +14,8 @@ public:
     void process_imgui();
 
 private:
-    int angle_{50};
+    /* ! STUDENTS TODO ! */
+    // Complete if necessary
 };
 
 #endif // TP4_EX1_TOOLS_H
