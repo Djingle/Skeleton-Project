@@ -92,6 +92,11 @@ A ces étapes s'ajoutent des [étapes nécessaires](#etendre-ce-starter-kit) ava
     ```bash
     cp override_pmp_files/SurfaceMeshGL.cpp externals/pmp-library/src/pmp/visualization/SurfaceMeshGL.cpp
     ```
+
+1. Remplacer le fichier `externals/pmp-library/src/pmp/algorithms/SurfaceSmoothing.h` par le fichier `override_pmp_files/SurfaceSmoothing.h` :
+    ```
+    cp override_pmp_files/SurfaceSmoothing.h externals/pmp-library/src/pmp/algorithms/SurfaceSmoothing.h
+    ```
 # Compiler la bibliotheque externe PMP
 
 ## A savoir avant de continuer
