@@ -43,7 +43,7 @@ Quels problème cela peut engendrer sur les traitements ?
 
 Que faut tester ? (ex: isolated vertex, etc)
 
-## Exercice 4 - Propriétés géométriques générales
+## Exercice 4 - Propriétés géométriques générales **(optionnel)**
 
 - Charger un maillage
 - Calculer ses propriétés géométriques
@@ -56,14 +56,14 @@ Que faut tester ? (ex: isolated vertex, etc)
   - Volume
   - Nombre d'Euler et genre de la surface
 
-## Exercice 5 - Graphe dual
+## Exercice 5 - Graphe dual **(optionnel)**
 
 Qu'est ce qu'un graphe dual et à quoi peut il servir ?
 
 - Charger un maillage
 - Calculer le Voronoï du maillage (dual)
 
-## Exercice 6 - Géodésiques et picking avec la GUI
+## Exercice 6 - Géodésiques et picking avec la GUI **(optionnel)**
 
 - Charger un maillage
 - Sélectionner un sommet source par un click souris
