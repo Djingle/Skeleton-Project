@@ -19,6 +19,7 @@ before_script:
 build:
   script:
   - cp override_pmp_files/SurfaceMeshGL.cpp externals/pmp-library/src/pmp/visualization/SurfaceMeshGL.cpp
+  - cp override_pmp_files/SurfaceSmoothing.h externals/pmp-library/src/pmp/algorithms/SurfaceSmoothing.h
   - cd ./externals/pmp-library/
   - mkdir build
   - cd build
