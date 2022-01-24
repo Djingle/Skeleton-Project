@@ -17,9 +17,9 @@
 ## Exercice 1 - Trois algorithmes de lissage
 
 La bibliothèque PMP implémente trois des algorithmes de lissage vus en cours :
-1. le lissage laplacien explicite (c.f. la méthode *explicit_smoothing()* de la classe *SurfaceSmoothing* dans la documentation)
-2. le lissage laplacien implicite, aussi appelé flot de diffusion (c.f. méthode *implicit_smoothing()* de la classe *SurfaceSmoothing*)
-3. le profillage (*fairing*) implicite minimisant la courbure, aussi appelé flot de courbure (c.f. méthode *fair()* de la classe *SurfaceFairing*)
+1. le lissage laplacien explicite (c.f. la méthode `explicit_smoothing()` de la classe `SurfaceSmoothing` dans la documentation)
+2. le lissage laplacien implicite, aussi appelé flot de diffusion (c.f. méthode `implicit_smoothing()` de la classe `SurfaceSmoothing`)
+3. le profillage (*fairing*) implicite minimisant la courbure, aussi appelé flot de courbure (c.f. méthode `fair()` de la classe `SurfaceFairing`)
 
 Dans cet exercice, vous comparez attentivement les codes de ces trois méthodes :
 - Quelles sont les différences ?
