@@ -49,6 +49,7 @@ void TP3_Ex1_MeshViewer::process_imgui()
         {
             pmp::SurfaceSmoothing surfSmooth(mesh_);
             surfSmooth.explicit_smoothing(explicitLaplacianNIter_);
+            update_mesh();
         }
     }
 
@@ -60,6 +61,7 @@ void TP3_Ex1_MeshViewer::process_imgui()
         {
             pmp::SurfaceSmoothing surfSmooth(mesh_);
             surfSmooth.implicit_smoothing(implicitLaplacianTimeStep_, implicitLaplacianUniformWeights_);
+            update_mesh();
         }
     }
     if( ImGui::CollapsingHeader("Fairing") )
@@ -69,8 +71,7 @@ void TP3_Ex1_MeshViewer::process_imgui()
         {
             pmp::SurfaceFairing surfFair(mesh_);
             surfFair.fair(fairK_);
+            update_mesh();
         }
     }
-
-    update_mesh();
 }

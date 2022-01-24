@@ -55,6 +55,7 @@ void TP3_Ex2_MeshViewer::process_imgui()
                     surfSmooth.explicit_smoothing(1, lambda_);
                     surfSmooth.explicit_smoothing(1, -mu_);
                 }
+                update_mesh();
             }
             else
             {
@@ -78,8 +79,7 @@ void TP3_Ex2_MeshViewer::process_imgui()
             {
                 mesh_.position(v) *= scaleFactor;
             }
+            update_mesh();
         }
     }
-
-    update_mesh();
 }

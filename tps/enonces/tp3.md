@@ -42,7 +42,8 @@ Afin de remédier à ce problème, deux solutions ont été proposées :
     Testez-le sur les fichiers OFF fournis, en faisant varier les paramètres
     λ et μ. μ doit être strictement supérieur à λ mais très proche.
 
-    > **Conseil :** modifier la classe `SurfaceSmoothing` de PMP pour que ses méthodes soient *protected*, créer une classe dérivée de `SurfaceSmoothing` qui réimplémente la méthode `explicit_smoothing` an ajoutant le paramètre $\lambda$ aux arguments.
+    > **Conseil :** modifier la classe `SurfaceSmoothing` de PMP pour que ses méthodes soient *protected*, créer une classe dérivée de `SurfaceSmoothing` qui réimplémente la méthode `explicit_smoothing` an ajoutant le paramètre $\lambda$ aux arguments. 
+    > **Note :** ne pas oublier de recompiler PMP après des modifications de son code !
 
 2. Desbrun
     
