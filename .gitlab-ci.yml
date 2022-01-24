@@ -17,8 +17,14 @@ before_script:
   - apt-get install --yes libglew-dev
 
 build:
-  rules:
-    - if: '$CI_PIPELINE_SOURCE != "webide"'
+  only:
+    changes:
+      - CMakeLists.txt
+      - tps/CMakeLists.txt
+      - tps/include/*
+      - tps/src/*
+      - tps/apps/*
+      - tps/corrections/**
   script:
   - cp override_pmp_files/SurfaceMeshGL.cpp externals/pmp-library/src/pmp/visualization/SurfaceMeshGL.cpp
   - cp override_pmp_files/SurfaceSmoothing.h externals/pmp-library/src/pmp/algorithms/SurfaceSmoothing.h
