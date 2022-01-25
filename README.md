@@ -16,8 +16,8 @@ Vous mettrez ainsi en application vos compétences acquises lors des TPs encadr�
 Cette série de TP se veut progressive et essaie de suivre une logique dans la création d'outils de base pour vos futurs projets.
 - **[Séance 1 :](tps/enonces/tp1.md)** Prise en main du starter-kit, recherche de documentation, parcours de la structure en demi-arêtes du module *core* de PMP, et aperçu du module *visualization* de PMP
 - **[Séance 2 :](tps/enonces/tp2.md)** Recherche de documentation, exploration du module *algorithms* de PMP (1/3)
-- **Séance 3:** Algorithmes de remaillage et module *algorithms* de PMP (2/3)
-- **Séance 4:** Algorithmes de simplification et module *algorithms* de PMP (3/3)
+- **[Séance 3 :](tps/enonces/tp3.md)** Algorithmes de remaillage et module *algorithms* de PMP (2/3)
+- **[Séance 4 :](tps/enonces/tp4.md)** Algorithmes de simplification et module *algorithms* de PMP (3/3)
 
 > **Note :** vous trouverez un ensemble de maillages au format OFF pour tester vos travaux à l'adresse suivante : https://seafile.unistra.fr/d/b630610d87af4e4e899e/
 
