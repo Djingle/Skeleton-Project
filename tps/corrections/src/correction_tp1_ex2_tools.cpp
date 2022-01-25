@@ -55,7 +55,7 @@ void questionA_printVerticesOfNextHalfEdge(const pmp::SurfaceMesh* const mesh,
 void questionA_printVerticesOfPreviousHalfEdge(const pmp::SurfaceMesh* const mesh,
                                                const pmp::Halfedge&          querryHE)
 {
-    pmp::Halfedge prevHE = mesh->next_halfedge(querryHE);
+    pmp::Halfedge prevHE = mesh->prev_halfedge(querryHE);
 
     std::cout << "Previous half-edge of " << querryHE << ":\n"
               << "-------------------------" << std::endl;
