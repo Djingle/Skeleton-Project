@@ -19,6 +19,8 @@ Cette série de TP se veut progressive et essaie de suivre une logique dans la c
 - **Séance 3:** Algorithmes de remaillage et module *algorithms* de PMP (2/3)
 - **Séance 4:** Algorithmes de simplification et module *algorithms* de PMP (3/3)
 
+> **Note :** vous trouverez un ensemble de maillages au format OFF pour tester vos travaux à l'adresse suivante : https://seafile.unistra.fr/d/b630610d87af4e4e899e/
+
 ## A faire dans l'ordre
 
 Pour réaliser ces TPs nous vous conseillons, dans l'ordre, de:
@@ -89,6 +91,11 @@ A ces étapes s'ajoutent des [étapes nécessaires](#etendre-ce-starter-kit) ava
 1. Remplacer le fichier `externals/pmp-library/src/pmp/visualiszation/SurfaceMeshGL.cpp` par le fichier `override_pmp_files/SurfaceMeshGL.cpp` :
     ```bash
     cp override_pmp_files/SurfaceMeshGL.cpp externals/pmp-library/src/pmp/visualization/SurfaceMeshGL.cpp
+    ```
+
+1. Remplacer le fichier `externals/pmp-library/src/pmp/algorithms/SurfaceSmoothing.h` par le fichier `override_pmp_files/SurfaceSmoothing.h` :
+    ```
+    cp override_pmp_files/SurfaceSmoothing.h externals/pmp-library/src/pmp/algorithms/SurfaceSmoothing.h
     ```
 # Compiler la bibliotheque externe PMP
 
