@@ -153,14 +153,17 @@ set_target_properties(pmp PROPERTIES VERSION ${PMP_VERSION})
    - en spécifiant avec `-S` ou se trouve le fichier `CMakeLists.txt` qui contient la configuration du projet
    - en spécifiant avec `-B` dans quel dossier compiler le projet
    - en spécifiant avec `-D` la valeur de l'option de compilation nommée `BUILD_STUDENTS`.
+
    Pour info :
    - vous pouvez également compiler les corrections en ajoutant aussi l'option `-D BUILD_CORRECTIONS=TRUE`.
-   - si votre CPU dispose de plusieurs coeurs, vous pouvez les utiliser pour paralléliser la compilation en ajoutant l'option `-j8` (remplacer 8 par le nombre de coeurs que vous souhaitez utiliser).
  
 3. Compiler le starter-kit :
    ``` bash
    cmake --build ./
    ```
+
+   Pour info :
+   - si votre CPU dispose de plusieurs coeurs, vous pouvez les utiliser pour paralléliser la compilation en ajoutant l'option `-j8` (remplacer 8 par le nombre de coeurs que vous souhaitez utiliser).
 
 > Note: Si vous rencontrez des problèmes de compilation par la suite, c'est peut être du à une ancienne version de PMP. Dans ce cas, déplacez vous à la racone du projet et utilisez :
     ```
