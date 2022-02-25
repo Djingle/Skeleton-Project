@@ -19,17 +19,17 @@ A votre avis, comment peut-on trianguler une face ?
 
 - Charger un maillage
 - Visualiser les faces non triangulaires
-- Les trianguler de manière simple
+- Les trianguler de manière simple (Voir [la documentation de la classe SurfaceTriangulation du module *algorithms*](https://www.pmp-library.org/classpmp_1_1_surface_triangulation.html))
 
 ## Exercice 2 - Watertight
 
 > Utiliser le maillage de Suzan
 
 - Charger un maillage
-- Identifier ses composantes connexes
-- Supprimer les petites composantes connexes
-- Identifier les bords
-- Remplir les trous
+- Identifier ses composantes connexes **(optionnel)**
+- Supprimer les petites composantes connexes **(optionnel)**
+- Identifier les bords (e.g. colorier les sommets des bords en rouge)
+- Remplir les trous (Voir [la documentation de la classe SurfaceHoleFilling du module *algorithms*](https://www.pmp-library.org/classpmp_1_1_surface_hole_filling.html))
 
 ## Exercice 3 - Manifold
 
@@ -37,11 +37,9 @@ Dans quel cas un maillage n'est pas manifold ?
 Quels problème cela peut engendrer sur les traitements ?
 
 - Charger un maillage
-- Verifier qu'il est triangulaire (output console)
-- Verifier qu'il est watertight (output console)
-- Verifier qu'il est manifold (surligner le non manifold)
-
-Que faut tester ? (ex: isolated vertex, etc)
+- Verifier qu'il est triangulaire et afficher en console. (Voir [la documentation de la classe SurfaceMesh du module *core*, méthode is_triangular_mesh](https://www.pmp-library.org/classpmp_1_1_surface_mesh.html#a9cede937c41f63448522e8522f7d65a5))
+- Verifier qu'il est watertight et afficher en console (vérifier l'abscence de bords sur les demis-arêtes)
+- Verifier qu'il est manifold **optionnel** et mettre en valeur les sommets/demi-arêtes/faces non-manifold. Que faut tester ? (ex: isolated vertex, etc)
 
 ## Exercice 4 - Propriétés géométriques générales **(optionnel)**
 

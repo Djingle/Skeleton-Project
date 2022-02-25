@@ -65,7 +65,7 @@ Les questions marquées d'un *(!)* comportent un risque potentiel. Quel est ce r
         - Afficher les demi-arêtes composant une face source
         - Afficher les faces voisines d'une face source
 
-## Exercice 3 - Modifier la géométrie
+## Exercice 3 - Modifier la géométrie **(optionnel)**
 
 > Chercher les transformations dans PMP.
 
