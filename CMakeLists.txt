@@ -1,6 +1,9 @@
 cmake_minimum_required(VERSION 3.13.4)
 
-project("geometrie_numerique_tps")
+project(skeleton
+        VERSION 1.0
+        DESCRIPTION "skeleton project test build"
+        LANGUAGES CXX)
 
 set(BUILD_STUDENTS FALSE CACHE PATH "Set to true if you want to build the student version")
 set(BUILD_CORRECTIONS FALSE CACHE PATH "Set to true if you want to build the corrections too")
@@ -104,10 +107,5 @@ else()
 endif()
 
 # Adding tps projects
-if(BUILD_STUDENTS)
-    add_subdirectory("./tps/")
-endif()
+add_subdirectory("./src/")
 
-if(BUILD_CORRECTIONS)
-    add_subdirectory("./tps/corrections/")
-endif()
