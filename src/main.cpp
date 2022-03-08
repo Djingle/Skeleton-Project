@@ -1,26 +1,57 @@
 #include <iostream>
 
-#include "CustomSurfaceMeshGL.h"
+#include "./cli_tools.h"
+#include "./tp4_ex1_tools.h"
 
-int main(int argc, char** argv)
+int main(int argc, char **argv)
 {
-    if( argc < 2 )
+    // Parsing command line *******************************************************************
+    // Set required arguments
+    std::vector<ArgPair> requiredArgs;
+
+    requiredArgs.push_back(ArgPair("inputMeshPath",
+                                   "Path of the mesh to be loaded"));
+
+    // Check command line validity
+    if ((size_t)argc != requiredArgs.size() + 1)
     {
-        std::cout << "Argument error (missing input mesh argument).\n"
-                  << "Usage :\n"
-                  << "-------\n"
-                  << argv[0] << " input_mesh_off_format" << std::endl;
-        
-        return 1;
+        std::cerr << "Error: command line arguments do not fit with usage" << std::endl;
+        printUsage(argc, argv, requiredArgs);
+        return -1;
     }
 
-    CustomSurfaceMeshGL inputMesh;
-    // Lecture du fichier OFF
-    // inputMesh.read(........)
-    
-    // Add random vertex color
+    // Get arguments from command line
+    int iArg = 1;
+    std::string inputMeshPath;
+    try
+    {
+        inputMeshPath = argv[iArg++];
+    }
+    catch (const std::exception &e)
+    {
+        std::cerr << "Error while parsing arguments:" << std::endl;
+        std::cerr << e.what() << "\n";
+        std::cerr << "Abort process." << std::endl;
+        return 1;
+    }
+    // ****************************************************************************************
 
-    // Either visualize (pmp visualization module) or save the colored mesh
+    // Load the input mesh
+    pmp::SurfaceMeshGL inputMesh;
+    std::cout << "Trying to read " << inputMeshPath << std::endl;
+    inputMesh.read(inputMeshPath);
+    std::cout << "Successfully loaded mesh from \"" << inputMeshPath << "\"" << std::endl;
+
+    // Instanciate a mesh viewer and attach the input mesh
+    std::string winTitle = "TP 4 - Ex.1 - Feature edges";
+    int winWidth = 800;
+    int winHeight = 600;
+    TP4_Ex1_MeshViewer meshViewer(winTitle.c_str(),
+                                  winWidth, winHeight,
+                                  inputMesh);
+
+    // Start main window loop
+    meshViewer.run();
 
     return 0;
 }

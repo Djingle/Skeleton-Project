@@ -13,5 +13,5 @@ target_sources(${PROJECT_NAME}
                cli_tools.h
                cli_tools.cpp
                tp4_ex1_tools.h
-               tp4_ex1.cpp  
+               main.cpp  
                )
