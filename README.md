@@ -1,5 +1,24 @@
 # skeleton_project
 
+## Présentation du projet :
+
+Dans le cardre de l'UE de géométrie numérique, M. Franck Hétroy-Wheeler joue le 
+rôle d'un client ayant contacté notre groupe, afin de créer et de fournir un
+programme estimant s'il est prudent d'imprimer un certain modèle 3D. Pour ce
+faire, nous devrons développer un programme déterminant le squelette du modèle
+3D afin de voir où il y a des fragilités. Nous utiliserons pour ça la librairie
+PMP.
+
+## Membres du groupe :
+
+**Chef de projet :** Bryan Emery
+
+* Bryan Emery
+* Grégory Horny
+* Paul Labaye
+* Titouan Laurent
+* Vinojan Rajendiran
+
 ## Prérequis :
 
 1. Avoir installé git
@@ -90,3 +109,7 @@ cmake --build ./
     ```
     git submodule update --remote --merge
     ```
+
+# Tag :
+
+v.0.0 : Projet vide qui affiche uniquement un mesh
