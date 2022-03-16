@@ -1,7 +1,7 @@
 #include <iostream>
 
 #include "./cli_tools.h"
-#include "./tp4_ex1_tools.h"
+#include "./SkeletonMeshViewer.h"
 
 int main(int argc, char **argv)
 {
@@ -43,12 +43,12 @@ int main(int argc, char **argv)
     std::cout << "Successfully loaded mesh from \"" << inputMeshPath << "\"" << std::endl;
 
     // Instanciate a mesh viewer and attach the input mesh
-    std::string winTitle = "TP 4 - Ex.1 - Feature edges";
+    std::string winTitle = "Skeleton Viewer ";
     int winWidth = 800;
     int winHeight = 600;
-    TP4_Ex1_MeshViewer meshViewer(winTitle.c_str(),
+    SkeletonMeshViewer meshViewer{winTitle.c_str(),
                                   winWidth, winHeight,
-                                  inputMesh);
+                                  inputMesh};
 
     // Start main window loop
     meshViewer.run();
