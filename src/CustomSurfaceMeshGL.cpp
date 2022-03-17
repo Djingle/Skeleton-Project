@@ -1,3 +1,10 @@
+///
+/// \file CustomSurfaceMeshGL.cpp
+/// \brief Source file of CustomSurfaceMeshGL
+/// \author EMERY Bryan, HORNY Gregory, LABAYE Paul, LAURENT Titouan, RAJENDIRAN Vinojan
+/// \version 0.2.0
+///
+
 #include "CustomSurfaceMeshGL.h"
 
 #include <string>

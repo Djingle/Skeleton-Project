@@ -1,3 +1,10 @@
+///
+/// \file cli_tools.cpp
+/// \brief Source file of cli_tools
+/// \author EMERY Bryan, HORNY Gregory, LABAYE Paul, LAURENT Titouan, RAJENDIRAN Vinojan
+/// \version 0.2.0
+///
+
 #include "./cli_tools.h"
 
 #include <iostream>
