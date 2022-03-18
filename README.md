@@ -134,3 +134,4 @@ c -> Correctifs
 ```
 
 V0.0.0 : Projet vide qui affiche uniquement un mesh
+V0.2.x : Projet vide avec de la documentation
