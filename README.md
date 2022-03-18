@@ -1,3 +1,5 @@
+Modif pour tester l'intégration git
+
 # skeleton_project
 
 ## Présentation du projet :
