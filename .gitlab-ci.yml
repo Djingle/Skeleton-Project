@@ -1,8 +1,8 @@
-image: alpine
+image: ubuntu:20.04
 
 pages:
   script:
-    - apk update && apk add doxygen && apk add graphviz
+    - sudo aptitude install graphviz doxygen
     - doxygen doc/Doxyfile
     - mv doc/html/ public/
   artifacts:
