@@ -1,3 +1,10 @@
+///
+/// \file SkeletonMeshViewer.cpp
+/// \brief Source file of SkeletonMeshViewer
+/// \author EMERY Bryan, HORNY Gregory, LABAYE Paul, LAURENT Titouan, RAJENDIRAN Vinojan
+/// \version 0.2.0
+///
+
 #include "./SkeletonMeshViewer.h"
 
 #include <pmp/algorithms/SurfaceFeatures.h>

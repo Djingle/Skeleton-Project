@@ -1,47 +1,12 @@
-image: ubuntu:20.04
+image: alpine
 
-variables:
-  GIT_SUBMODULE_STRATEGY: recursive
-
-before_script:
-  - apt-get update  --yes
-  - apt-get upgrade --yes
-  - DEBIAN_FRONTEND=noninteractive apt-get install --yes cmake
-  - apt-get install --yes build-essential
-  - apt-get install --yes libgl1-mesa-dev
-  - apt-get install --yes libxt-dev
-  - apt-get install --yes libxrandr-dev
-  - apt-get install --yes libxinerama-dev
-  - apt-get install --yes libxcursor-dev
-  - apt-get install --yes libxi-dev
-  - apt-get install --yes libglew-dev
-
-build:
+pages:
   script:
-  - cp override_pmp_files/SurfaceMeshGL.cpp externals/pmp-library/src/pmp/visualization/SurfaceMeshGL.cpp
-  - cp override_pmp_files/SurfaceSmoothing.h externals/pmp-library/src/pmp/algorithms/SurfaceSmoothing.h
-  - cd ./externals/pmp-library/
-  - mkdir build
-  - cd build
-  - cmake -S ../ -B ./
-  - cmake --build ./
-  - cd ../../../
-  - mkdir build
-  - cd build
-  - cmake -S ../ -B ./ -D BUILD_CORRECTIONS=TRUE -D BUILD_STUDENTS=TRUE
-  - cmake --build ./
-  - mkdir ../artifacts
-  - cp ./tps/tp* ../artifacts/
-  only:
-    refs:
-      - branches
-    changes:
-      - CMakeLists.txt
-      - tps/CMakeLists.txt
-      - tps/include/*
-      - tps/src/*
-      - tps/apps/*
-      - tps/corrections/**
+    - apk update && apk add doxygen && apk add graphviz
+    - doxygen doc/Doxyfile
+    - mv doc/html/ public/
   artifacts:
     paths:
-      - ./tps/corrections/bin/
+      - public
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
