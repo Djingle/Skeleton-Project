@@ -6,7 +6,8 @@ pages:
     - apk update && apk add doxygen
     - doxygen -u Doxyfile
     - doxygen Doxyfile
-    - mv html/ public/
+    - cd ..
+    - mv doc/html/ public/
   artifacts:
     paths:
       - public
