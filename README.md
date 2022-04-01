@@ -1,34 +1,32 @@
-Modif pour tester l'intégration git
+# Présentation du projet
 
-# skeleton_project
-
-## Présentation du projet :
-
-Dans le cardre de l'UE de géométrie numérique, M. Franck Hétroy-Wheeler joue le 
+Dans le cardre de l'UE de géométrie numérique, M. Franck HETROY-WHEELER joue le 
 rôle d'un client ayant contacté notre groupe, afin de créer et de fournir un
 programme estimant s'il est prudent d'imprimer un certain modèle 3D. Pour ce
 faire, nous devrons développer un programme déterminant le squelette du modèle
 3D afin de voir où il y a des fragilités. Nous utiliserons pour ça la librairie
 PMP.
 
-## Membres du groupe :
+## Membres du groupe
 
-**Chef de projet :** Bryan Emery
+**Chef de projet :** Bryan EMERY
 
-* Bryan Emery
-* Grégory Horny
-* Paul Labaye
-* Titouan Laurent
-* Vinojan Rajendiran
+* Bryan EMERY
+* Grégory HORNY
+* Paul LABAYE
+* Titouan LAURENT
+* Vinojan RAJENDIRAN
 
-## Prérequis :
+# Installation
 
-1. Avoir installé git
-1. Avoir installé cmake
-1. Avoir un compilateur c++
-1. Avoir installé OpenGL
+## Prérequis
 
-## Etapes :
+1. Git
+1. CMake
+1. Compilateur C++
+1. OpenGL
+
+## Etapes
 
 L'installation se fait en 3 étapes :
 
@@ -38,7 +36,7 @@ L'installation se fait en 3 étapes :
 
 > **Note :** Pour les utilisateurs de Windows, la commande `cmake` sera remplacée par la commande `cmake.exe`
 
-# Clone du dépôt git
+## Clone du dépôt git
 
 ```bash
 git clone https://git.unistra.fr/bemery/skeleton_project.git
@@ -59,9 +57,9 @@ git submodule update --init --recursive
    cp override_pmp_files/SurfaceSmoothing.h externals/pmp-library/src/pmp/algorithms/SurfaceSmoothing.h
    ```
 
-# Compiler la bibliotheque externe PMP
+## Compiler la bibliotheque externe PMP
 
-## A savoir avant de continuer :
+### A savoir avant de continuer
 
 Pour les utilisateurs de MinGW, il sera peut être nécessaire d'ajouter la ligne `target_link_libraries(pmp OpenMP::OpenMP_CXX)` au fichier `extertnals/pmp-library/src/pmp/CMakeLists.txt`.
 Le fichier doit alors ressembler à :
@@ -80,7 +78,7 @@ set_target_properties(pmp PROPERTIES VERSION ${PMP_VERSION})
 [...]
 ```
 
-## Compilation pmp :
+### Compilation pmp
 
 ```bash
 cd ./externals/pmp-library/
@@ -90,7 +88,7 @@ cmake -S ../ -B ./
 cmake --build ./
 ```
 
-# Compiler le code source du starter-kit
+## Compiler le code source du starter-kit
 
 1. A la racine du projet (dans `geometrie_numerique_tps`), créer un dossier `build` et s'y déplacer :
 
@@ -114,14 +112,14 @@ cmake --build ./
 
 # Fonctionnement en mode projet
 
-## Utilisation du git :
+## Utilisation du git
 
 Nous avons décidé de consacrer une branche git par nouveau module qui sera
 ajouté. Ainsi, seule la branche master contiendra la version la plus aboutie du
 projet. Cela permettra également un retour en arrière facilité en cas de
 problème avec une nouvelle fonctionnalité.
 
-## Tag :
+## Tag
 
 Nous utiliserons un système de tag pour différencier les différentes étapes de
 notre projet. Un tag se présentera comme ceci :
