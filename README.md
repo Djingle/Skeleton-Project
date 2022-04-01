@@ -54,9 +54,14 @@ git submodule update --init --recursive
    cp override_pmp_files/SurfaceMeshGL.cpp externals/pmp-library/src/pmp/visualization/SurfaceMeshGL.cpp
    ```
 
-1. Remplacer le fichier `externals/pmp-library/src/pmp/algorithms/SurfaceSmoothing.h` par le fichier `override_pmp_files/SurfaceSmoothing.h` :
-   ```
+2. Remplacer le fichier `externals/pmp-library/src/pmp/algorithms/SurfaceSmoothing.h` par le fichier `override_pmp_files/SurfaceSmoothing.h` :
+   ```bash
    cp override_pmp_files/SurfaceSmoothing.h externals/pmp-library/src/pmp/algorithms/SurfaceSmoothing.h
+   ```
+
+3. Remplacer le fichier `externals/pmp-library/src/pmp/SurfaceMeshIO.cpp` par le fichier `override_pmp_files/SurfaceMeshIO.cpp` :
+   ```bash
+   cp override_pmp_files/SurfaceMeshIO.cpp externals/pmp-library/src/pmp/SurfaceMeshIO.cpp
    ```
 
 ### Compiler la bibliotheque externe PMP
