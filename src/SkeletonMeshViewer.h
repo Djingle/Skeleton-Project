@@ -10,9 +10,22 @@
 
 #include <pmp/visualization/MeshViewer.h>
 
+///
+/// \brief Mesh and skeleton viewer
+///
 class SkeletonMeshViewer : public pmp::MeshViewer
 {
 public:
+    ///
+    /// \fn SkeletonMeshViewer SkeletonMeshViewer::SkeletonMeshViewer(const char *title, int width, int height, pmp::SurfaceMeshGL &mesh, bool showgui = true);
+    /// \brief Load a mesh from a .off file
+    ///
+    /// \param title Name of window
+    /// \param width Width of window
+    /// \param height Height of window
+    /// \param mesh Mesh to display
+    /// \param showgui Show graphic UI (default : TRUE)
+    ///
     SkeletonMeshViewer(const char *title,
                        int width, int height,
                        pmp::SurfaceMeshGL &mesh,

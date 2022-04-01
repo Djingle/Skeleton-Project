@@ -12,11 +12,22 @@
 
 #include <pmp/visualization/SurfaceMeshGL.h>
 
+///
+/// \brief Obsolete class
+///
 class CustomSurfaceMeshGL : public pmp::SurfaceMeshGL
 {
 public:
+    ///
+    /// \fn CustomSurfaceMeshGL CustomSurfaceMeshGL::CustomSurfaceMeshGL()
+    /// \brief Default constructor
+    ///
     CustomSurfaceMeshGL();
 
+    ///
+    /// \fn void CustomSurfaceMeshGL::~CustomSurfaceMeshGL()
+    /// \brief Default destructor
+    ///
     ~CustomSurfaceMeshGL();
 
     ///
