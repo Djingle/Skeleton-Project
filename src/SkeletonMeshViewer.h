@@ -36,7 +36,14 @@ public:
     ///
     void process_imgui();
 
+    inline const bool& mesh_displayed() const { return display_mesh_; }
+
 private:
+    double size_;
+    bool display_mesh_;
+    bool display_skeleton_;
+    bool color_mesh_;
+    bool color_skeleton_;
 };
 
 #endif

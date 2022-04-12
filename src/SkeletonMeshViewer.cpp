@@ -42,4 +42,11 @@ SkeletonMeshViewer::SkeletonMeshViewer(const char *title,
 void SkeletonMeshViewer::process_imgui()
 {
     pmp::MeshViewer::process_imgui();
+
+    if (ImGui::Button("Load Mesh")){}
+    if (ImGui::InputDouble("Final size", &size_, 0.01, 0.1)){}
+    if (ImGui::Checkbox("Display Mesh", &display_mesh_)){}
+    if (ImGui::Checkbox("Display Skeleton", &display_skeleton_)){}
+    if (ImGui::Checkbox("Color Mesh", &color_mesh_)){}
+    if (ImGui::Checkbox("Color Skeleton", &color_skeleton_)){}
 }
