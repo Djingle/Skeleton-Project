@@ -45,8 +45,16 @@ void SkeletonMeshViewer::process_imgui()
 
     if (ImGui::Button("Load Mesh")){}
     if (ImGui::InputDouble("Final size", &size_, 0.01, 0.1)){}
-    if (ImGui::Checkbox("Display Mesh", &display_mesh_)){}
-    if (ImGui::Checkbox("Display Skeleton", &display_skeleton_)){}
-    if (ImGui::Checkbox("Color Mesh", &color_mesh_)){}
-    if (ImGui::Checkbox("Color Skeleton", &color_skeleton_)){}
+    if (ImGui::Checkbox("Display Mesh", &display_mesh_)){
+        std::cout << "Mesh display : " << display_mesh_ << std::endl;
+    }
+    if (ImGui::Checkbox("Display Skeleton", &display_skeleton_)){
+        std::cout << "Skeleton display : " << display_skeleton_ << std::endl;
+    }
+    if (ImGui::Checkbox("Color Mesh", &color_mesh_)){
+        std::cout << "Mesh color : " << color_mesh_ << std::endl;
+    }
+    if (ImGui::Checkbox("Color Skeleton", &color_skeleton_)){
+        std::cout << "Skeleton color : " << color_skeleton_ << std::endl;
+    }
 }
