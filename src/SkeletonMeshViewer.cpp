@@ -8,6 +8,7 @@
 #include "./SkeletonMeshViewer.h"
 
 #include <pmp/algorithms/SurfaceFeatures.h>
+#include <pmp/algorithms/SurfaceTriangulation.h>
 
 #include <imgui.h>
 
@@ -41,5 +42,12 @@ SkeletonMeshViewer::SkeletonMeshViewer(const char *title,
 
 void SkeletonMeshViewer::process_imgui()
 {
+
+    if (!mesh_.is_triangle_mesh())
+    {
+        auto triangle = pmp::SurfaceTriangulation(mesh_);
+        triangle.triangulate();
+        update_mesh();
+    }
     pmp::MeshViewer::process_imgui();
 }

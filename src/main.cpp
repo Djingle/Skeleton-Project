@@ -10,6 +10,16 @@
 #include "./cli_tools.h"
 #include "./SkeletonMeshViewer.h"
 
+bool isWatertight(const pmp::SurfaceMesh &mesh)
+{
+    for (auto he : mesh.halfedges())
+    {
+        if (mesh.is_boundary(he))
+            return false;
+    }
+    return true;
+}
+
 int main(int argc, char **argv)
 {
     // Parsing command line *******************************************************************
@@ -48,6 +58,12 @@ int main(int argc, char **argv)
     std::cout << "Trying to read " << inputMeshPath << std::endl;
     inputMesh.read(inputMeshPath);
     std::cout << "Successfully loaded mesh from \"" << inputMeshPath << "\"" << std::endl;
+
+    if (!isWatertight(inputMesh))
+    {
+        std::cout << "The mesh has to be watertight" << std::endl;
+        exit(EXIT_FAILURE);
+    }
 
     // Instanciate a mesh viewer and attach the input mesh
     std::string winTitle = "Skeleton Viewer ";
