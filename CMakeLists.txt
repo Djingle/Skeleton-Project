@@ -8,7 +8,7 @@ project(skeleton
 set(BUILD_STUDENTS FALSE CACHE PATH "Set to true if you want to build the student version")
 set(BUILD_CORRECTIONS FALSE CACHE PATH "Set to true if you want to build the corrections too")
 
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # Specify the path to the compiled pmp library
@@ -96,7 +96,7 @@ include_directories("externals/pmp-library/external/imgui/")
 
 # Check compiler and add corresponding flags
 if(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -D_USE_MATH_DEFINES -DNOMINMAX -D_CRT_SECURE_NO_WARNINGS")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -D_USE_MATH_DEFINES -DNOMINMAX -D_CRT_SECURE_NO_WARNINGS -lstdc++f")
     add_compile_options(/wd4267) # conversion from size_t
     add_compile_options(/wd4244) # conversion from double to float
     add_compile_options(/wd4305) # truncation from double to float

@@ -9,6 +9,8 @@
 #define TP4_EX1_TOOLS_H
 
 #include <pmp/visualization/MeshViewer.h>
+#include <imgui.h>
+#include "imfilebrowser.h"
 
 ///
 /// \brief Mesh and skeleton viewer
@@ -42,11 +44,14 @@ public:
     inline const bool& skeleton_colored() const { return color_skeleton_; }
 
 private:
+
+    const char * selected_dimension_;
     bool display_mesh_;
     bool display_skeleton_;
     bool color_mesh_;
     bool color_skeleton_;
     double size_;
+    ImGui::FileBrowser file_dialog_;
 };
 
 #endif

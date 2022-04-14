@@ -10,6 +10,7 @@
 #include <pmp/algorithms/SurfaceFeatures.h>
 
 #include <imgui.h>
+#include "imfilebrowser.h"
 
 SkeletonMeshViewer::SkeletonMeshViewer(const char *title,
                                        int width, int height,
@@ -18,6 +19,12 @@ SkeletonMeshViewer::SkeletonMeshViewer(const char *title,
                                                                        width, height,
                                                                        showgui)
 {
+    // Initiate the file dialog
+    file_dialog_.SetTitle("Ouvrir");
+    file_dialog_.SetTypeFilters({".off"});
+
+    //strcpy(selected_dimension_, "Select a Dimension");
+
     mesh_ = mesh;
     pmp::BoundingBox bb = mesh_.bounds();
     set_scene((pmp::vec3)bb.center(), 0.6 * bb.size());
@@ -43,8 +50,27 @@ void SkeletonMeshViewer::process_imgui()
 {
     pmp::MeshViewer::process_imgui();
 
-    if (ImGui::Button("Load Mesh")){}
-    if (ImGui::InputDouble("Final size", &size_, 0.01, 0.1)){}
+    if (ImGui::Button("Load Mesh")){
+        file_dialog_.Open();
+    }
+    if (ImGui::InputDouble("Final size", &size_, 0.01, 0.1)){
+
+    }
+    if (ImGui::BeginCombo("Dimension", selected_dimension_)) {
+        bool _x, _y, _z;
+        const char * dimensions[] = {"X", "Y", "Z"};
+        
+        if (ImGui::Selectable("X", &_x)) {
+            selected_dimension_ = dimensions[0];
+        }
+        if (ImGui::Selectable("Y", &_y)) {
+            selected_dimension_ = dimensions[1];
+        }
+        if (ImGui::Selectable("Z", &_z)) {
+            selected_dimension_ = dimensions[2];
+        }
+        ImGui::EndCombo();
+    }
     if (ImGui::Checkbox("Display Mesh", &display_mesh_)){
         std::cout << "Mesh display : " << display_mesh_ << std::endl;
     }
@@ -56,5 +82,10 @@ void SkeletonMeshViewer::process_imgui()
     }
     if (ImGui::Checkbox("Color Skeleton", &color_skeleton_)){
         std::cout << "Skeleton color : " << color_skeleton_ << std::endl;
+    }
+    file_dialog_.Display();
+    if (file_dialog_.HasSelected()) {
+        std::cout << "Selected filename" << file_dialog_.GetSelected();
+        file_dialog_.ClearSelected();
     }
 }
