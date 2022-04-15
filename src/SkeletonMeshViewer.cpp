@@ -85,7 +85,14 @@ void SkeletonMeshViewer::process_imgui()
     }
     file_dialog_.Display();
     if (file_dialog_.HasSelected()) {
-        std::cout << "Selected filename" << file_dialog_.GetSelected();
+        std::string imput_path = file_dialog_.GetSelected();
+        pmp::SurfaceMeshGL imput_mesh;
+        std::cout << "Selected filename : " << file_dialog_.GetSelected() << std::endl;
+        imput_mesh.read(imput_path);
+        mesh_ = imput_mesh;
+        pmp::BoundingBox bb = mesh_.bounds();
+        set_scene((pmp::vec3)bb.center(), 0.6 * bb.size());
+        update_mesh();
         file_dialog_.ClearSelected();
     }
 }
