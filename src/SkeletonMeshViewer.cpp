@@ -44,6 +44,7 @@ SkeletonMeshViewer::SkeletonMeshViewer(const char *title,
 
     // Set viewer angle parameter
     mesh_.set_crease_angle(0);
+    mesh_.set_alpha(0.5);
 }
 
 void SkeletonMeshViewer::process_imgui()

@@ -35,22 +35,42 @@ public:
 
     ///
     /// \fn void SkeletonMeshViewer::process_imgui()
+    /// \brief Renders GUI
     ///
     void process_imgui();
 
+    ///
+    /// \fn const bool& mesh_displayed()
+    /// \brief display_mesh_ getter
+    ///
     inline const bool& mesh_displayed() const { return display_mesh_; }
+    ///
+    /// \fn const bool& skeleton_displayed()
+    /// \brief display_skeleton_ getter
+    ///
     inline const bool& skeleton_displayed() const { return display_skeleton_; }
+    ///
+    /// \fn const bool& mesh_colored()
+    /// \brief color_mesh_ getter
+    ///
     inline const bool& mesh_colored() const { return color_mesh_; }
+    ///
+    /// \fn const bool& skeleton_colored()
+    /// \brief color_skeleton_ getter
+    ///
     inline const bool& skeleton_colored() const { return color_skeleton_; }
 
 private:
 
-    const char * selected_dimension_;
+    const char * selected_dimension_; // Defines the dimension on which size is applied
+    
+    // Display informations
     bool display_mesh_;
     bool display_skeleton_;
     bool color_mesh_;
     bool color_skeleton_;
-    double size_;
+
+    double size_; // Size of the final object
     ImGui::FileBrowser file_dialog_;
 };
 
