@@ -8,6 +8,7 @@
 #include "./SkeletonMeshViewer.h"
 
 #include <pmp/algorithms/SurfaceFeatures.h>
+#include <CGAL/internal/Surface_mesh_skeletonization/Curve_skeleton.h>
 
 #include <imgui.h>
 #include "imfilebrowser.h"

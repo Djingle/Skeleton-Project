@@ -6,9 +6,19 @@
 ///
 
 #include <iostream>
+#include <CGAL/internal/Surface_mesh_skeletonization/Curve_skeleton.h>
+#include <CGAL/Polyhedron_3.h>
+#include <CGAL/Surface_mesh/Surface_mesh.h>
+#include <CGAL/Surface_mesh/IO.h>
+#include <CGAL/Simple_cartesian.h>
+#include <CGAL/Surface_mesh.h>
 
+#include <fstream>
 #include "./cli_tools.h"
 #include "./SkeletonMeshViewer.h"
+
+typedef CGAL::Simple_cartesian<double> K;
+typedef CGAL::Surface_mesh<K::Point_3> Mesh;
 
 int main(int argc, char **argv)
 {
@@ -48,6 +58,10 @@ int main(int argc, char **argv)
     std::cout << "Trying to read " << inputMeshPath << std::endl;
     inputMesh.read(inputMeshPath);
     std::cout << "Successfully loaded mesh from \"" << inputMeshPath << "\"" << std::endl;
+
+    // Test
+    Mesh testMesh;
+    read_mesh(testMesh, inputMeshPath);
 
     // Instanciate a mesh viewer and attach the input mesh
     std::string winTitle = "Skeleton Viewer ";
