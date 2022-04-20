@@ -8,7 +8,6 @@
 #include "./SkeletonMeshViewer.h"
 
 #include <pmp/algorithms/SurfaceFeatures.h>
-#include <CGAL/internal/Surface_mesh_skeletonization/Curve_skeleton.h>
 
 #include <imgui.h>
 #include "imfilebrowser.h"
@@ -16,7 +15,8 @@
 
 SkeletonMeshViewer::SkeletonMeshViewer(const char *title,
                                        int width, int height,
-                                       pmp::SurfaceMeshGL &mesh,
+                                       pmp::SurfaceMeshGL &mesh, 
+                                       pmp::SurfaceMeshGL &skel,
                                        bool showgui) : pmp::MeshViewer(title,
                                                                        width, height,
                                                                        showgui)
@@ -27,7 +27,7 @@ SkeletonMeshViewer::SkeletonMeshViewer(const char *title,
 
     // Initiate the current mesh
     mesh_ = mesh;
-    skel_.read("./data/189_filigree.off");
+    skel_ = skel;
     pmp::BoundingBox bb = mesh_.bounds();
     set_scene((pmp::vec3)bb.center(), 0.6 * bb.size());
 
@@ -53,7 +53,7 @@ void SkeletonMeshViewer::draw(const std::string& drawMode)
 {
     // draw mesh
     mesh_.draw(projection_matrix_, modelview_matrix_, drawMode);
-    skel_.draw(projection_matrix_, modelview_matrix_, drawMode);
+    skel_.draw(projection_matrix_, modelview_matrix_, "Points");
 }
 
 void SkeletonMeshViewer::process_imgui()

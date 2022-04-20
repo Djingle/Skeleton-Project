@@ -31,6 +31,7 @@ public:
     SkeletonMeshViewer(const char *title,
                        int width, int height,
                        pmp::SurfaceMeshGL &mesh,
+                       pmp::SurfaceMeshGL &skel,
                        bool showgui = true);
 
     ///
