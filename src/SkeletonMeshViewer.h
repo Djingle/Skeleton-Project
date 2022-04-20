@@ -60,6 +60,11 @@ public:
     ///
     inline const bool& skeleton_colored() const { return color_skeleton_; }
 
+    virtual void draw(const std::string& draw_mode) override;
+
+protected:
+    pmp::SurfaceMeshGL skel_;   //!< the mesh
+    
 private:
 
     const char * selected_dimension_; // Defines the dimension on which size is applied

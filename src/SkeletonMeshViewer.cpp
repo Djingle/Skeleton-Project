@@ -26,6 +26,7 @@ SkeletonMeshViewer::SkeletonMeshViewer(const char *title,
 
     // Initiate the current mesh
     mesh_ = mesh;
+    skel_.read("./data/189_filigree.off");
     pmp::BoundingBox bb = mesh_.bounds();
     set_scene((pmp::vec3)bb.center(), 0.6 * bb.size());
 
@@ -45,6 +46,13 @@ SkeletonMeshViewer::SkeletonMeshViewer(const char *title,
     // Set viewer angle parameter
     mesh_.set_crease_angle(0);
     mesh_.set_alpha(0.5);
+}
+
+void SkeletonMeshViewer::draw(const std::string& drawMode)
+{
+    // draw mesh
+    mesh_.draw(projection_matrix_, modelview_matrix_, drawMode);
+    skel_.draw(projection_matrix_, modelview_matrix_, drawMode);
 }
 
 void SkeletonMeshViewer::process_imgui()
