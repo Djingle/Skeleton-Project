@@ -84,6 +84,9 @@ int main(int argc, char **argv)
       Skeleton skeleton;
       Skeletonization mcs(tmesh);
 
+    mcs.set_quality_speed_tradeoff(100*mcs.quality_speed_tradeoff());
+    mcs.set_medially_centered_speed_tradeoff(100*mcs.medially_centered_speed_tradeoff());
+    mcs.set_is_medially_centered(true);
       // 1. Contract the mesh by mean curvature flow.
       mcs.contract_geometry();
 
@@ -121,7 +124,8 @@ int main(int argc, char **argv)
         output.open("correspondance-poly.polylines.txt");
         for(Skeleton_vertex v : CGAL::make_range(vertices(skeleton)))
         {
-            for(vertex_descriptor vd : skeleton[v].vertices){
+            for(vertex_descriptor vd : skeleton[v].vertices)
+            {
                         output << "2 " << skeleton[v].point << "  " << get(CGAL::vertex_point, tmesh, vd)  << "\n";
                         skel.add_vertex(pmp::Point(skeleton[v].point[0],skeleton[v].point[1],skeleton[v].point[2]));
             }
