@@ -87,52 +87,65 @@ int main(int argc, char **argv)
     mcs.set_quality_speed_tradeoff(100*mcs.quality_speed_tradeoff());
     mcs.set_medially_centered_speed_tradeoff(100*mcs.medially_centered_speed_tradeoff());
     mcs.set_is_medially_centered(true);
-      // 1. Contract the mesh by mean curvature flow.
-      mcs.contract_geometry();
+    // 1. Contract the mesh by mean curvature flow.
+    mcs.contract_geometry();
 
-      // 2. Collapse short edges and split bad triangles.
-      mcs.collapse_edges();
-      mcs.split_faces();
+    // 2. Collapse short edges and split bad triangles.
+    mcs.collapse_edges();
+    mcs.split_faces();
 
-      // 3. Fix degenerate vertices.
-      mcs.detect_degeneracies();
+    // 3. Fix degenerate vertices.
+    mcs.detect_degeneracies();
 
-      // Perform the above three steps in one iteration.
-      mcs.contract();
+    // Perform the above three steps in one iteration.
+    mcs.contract();
 
-      // Iteratively apply step 1 to 3 until convergence.
-      mcs.contract_until_convergence();
+    // Iteratively apply step 1 to 3 until convergence.
+    mcs.contract_until_convergence();
 
-      // Convert the contracted mesh into a curve skeleton and
-      // get the correspondent surface points
-      mcs.convert_to_skeleton(skeleton);
+    // Convert the contracted mesh into a curve skeleton and
+    // get the correspondent surface points
+    mcs.convert_to_skeleton(skeleton);
 
-      std::cout << "Number of vertices of the skeleton: " << boost::num_vertices(skeleton) << "\n";
-      std::cout << "Number of edges of the skeleton: " << boost::num_edges(skeleton) << "\n";
+    std::cout << "Number of vertices of the skeleton: " << boost::num_vertices(skeleton) << "\n";
+    std::cout << "Number of edges of the skeleton: " << boost::num_edges(skeleton) << "\n";
 
-      // Output all the edges of the skeleton.
-      std::ofstream output("skel-poly.polylines.txt");
-      for(Skeleton_edge e : CGAL::make_range(edges(skeleton)))
-      {
-        const Point& s = skeleton[source(e, skeleton)].point;
-        const Point& t = skeleton[target(e, skeleton)].point;
-        output << "2 "<< s << " " << t << "\n";
-      }
-      output.close();
+    // Output all the edges of the skeleton.
+    std::ofstream output("skel-poly.polylines.txt");
+    for(Skeleton_edge e : CGAL::make_range(edges(skeleton)))
+    {
+    const Point& s = skeleton[source(e, skeleton)].point;
+    const Point& t = skeleton[target(e, skeleton)].point;
+    output << "2 "<< s << " " << t << "\n";
+    }
+    output.close();
 
-      // Output skeleton points and the corresponding surface points
-        output.open("correspondance-poly.polylines.txt");
-        pmp::Vertex n_v;
-        for(Skeleton_vertex v : CGAL::make_range(vertices(skeleton)))
-        {
-            for(vertex_descriptor vd : skeleton[v].vertices)
-            {
-              output << skeleton[v].point << "\n" ;//<< get(CGAL::vertex_point, tmesh, vd)  << "\n";
-              n_v = skel.add_vertex(pmp::Point(skeleton[v].point[0],skeleton[v].point[1],skeleton[v].point[2]));
-              auto test = skel.vertex_property<pmp::Color>("v:color");
-              test[n_v] = pmp::Color(255,0,0);
-            }
+    // Output skeleton points and the corresponding surface points
+    output.open("correspondance-poly.polylines.txt");
+    //pmp::Vertex n_v;
+    float m_distance;
+    float n_liens; // nombre de correspondances
+    pmp::Vertex n_v;
+    for(Skeleton_vertex v : CGAL::make_range(vertices(skeleton))) {
+        n_liens = 0.0;
+        for(vertex_descriptor vd : skeleton[v].vertices) {
+            n_liens++;
+            output << skeleton[v].point << get(CGAL::vertex_point, tmesh, vd)  << "\n";
+            m_distance += CGAL::squared_distance(skeleton[v].point, get(CGAL::vertex_point, tmesh, vd));
         }
+        m_distance /= n_liens;
+        n_v = skel.add_vertex(pmp::Point(skeleton[v].point[0],skeleton[v].point[1],skeleton[v].point[2]));
+        auto dist = skel.vertex_property<float>("distance");
+        dist[n_v] = m_distance;
+        output << "\n\n" << m_distance << "\n" << dist[n_v] << "\n\n";
+    }
+
+    auto col = skel.vertex_property<pmp::Color>("v:color");
+    for (auto v : skel.vertices()) {
+        pmp::Color coul(0.0, 0.0, 0.0);
+        std::cout << coul << std::endl;
+        col[v] = coul;
+    }
 
 
     // Load the input mesh

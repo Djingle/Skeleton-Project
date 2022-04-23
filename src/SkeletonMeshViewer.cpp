@@ -17,9 +17,12 @@ SkeletonMeshViewer::SkeletonMeshViewer(const char *title,
                                        int width, int height,
                                        pmp::SurfaceMeshGL &mesh, 
                                        pmp::SurfaceMeshGL &skel,
-                                       bool showgui) : pmp::MeshViewer(title,
-                                                                       width, height,
-                                                                       showgui)
+                                       bool showgui) :
+    pmp::MeshViewer(title, width, height, showgui),
+    display_mesh_(true),
+    display_skeleton_(true),
+    color_mesh_(false),
+    color_skeleton_(false)
 {
     // Initiate the file dialog
     file_dialog_.SetTitle("Ouvrir");
@@ -52,8 +55,8 @@ SkeletonMeshViewer::SkeletonMeshViewer(const char *title,
 void SkeletonMeshViewer::draw(const std::string& drawMode)
 {
     // draw mesh
-    mesh_.draw(projection_matrix_, modelview_matrix_, drawMode);
-    skel_.draw(projection_matrix_, modelview_matrix_, "Points");
+    if(display_mesh_) mesh_.draw(projection_matrix_, modelview_matrix_, drawMode);
+    if(display_skeleton_) skel_.draw(projection_matrix_, modelview_matrix_, "Points");
 }
 
 void SkeletonMeshViewer::process_imgui()
