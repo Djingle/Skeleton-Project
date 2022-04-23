@@ -12,17 +12,15 @@
 #include <imgui.h>
 #include "imfilebrowser.h"
 
-
 SkeletonMeshViewer::SkeletonMeshViewer(const char *title,
                                        int width, int height,
-                                       pmp::SurfaceMeshGL &mesh, 
+                                       pmp::SurfaceMeshGL &mesh,
                                        pmp::SurfaceMeshGL &skel,
-                                       bool showgui) :
-    pmp::MeshViewer(title, width, height, showgui),
-    display_mesh_(true),
-    display_skeleton_(true),
-    color_mesh_(false),
-    color_skeleton_(false)
+                                       bool showgui) : pmp::MeshViewer(title, width, height, showgui),
+                                                       display_mesh_(true),
+                                                       display_skeleton_(true),
+                                                       color_mesh_(false),
+                                                       color_skeleton_(false)
 {
     // Initiate the file dialog
     file_dialog_.SetTitle("Ouvrir");
@@ -52,11 +50,13 @@ SkeletonMeshViewer::SkeletonMeshViewer(const char *title,
     mesh_.set_alpha(0.5);
 }
 
-void SkeletonMeshViewer::draw(const std::string& drawMode)
+void SkeletonMeshViewer::draw(const std::string &drawMode)
 {
     // draw mesh
-    if(display_mesh_) mesh_.draw(projection_matrix_, modelview_matrix_, drawMode);
-    if(display_skeleton_) skel_.draw(projection_matrix_, modelview_matrix_, "Points");
+    if (display_mesh_)
+        mesh_.draw(projection_matrix_, modelview_matrix_, drawMode);
+    if (display_skeleton_)
+        skel_.draw(projection_matrix_, modelview_matrix_, "Points", false);
 }
 
 void SkeletonMeshViewer::process_imgui()
@@ -64,55 +64,65 @@ void SkeletonMeshViewer::process_imgui()
     pmp::MeshViewer::process_imgui();
 
     // Set the file browser open
-    if (ImGui::Button("Load Mesh")){
+    if (ImGui::Button("Load Mesh"))
+    {
         file_dialog_.Open();
     }
 
     // Select size of the final object
-    if (ImGui::InputDouble("Final size", &size_, 0.01, 0.1)){
-
+    if (ImGui::InputDouble("Final size", &size_, 0.01, 0.1))
+    {
     }
 
     // Select dimension on which the final size will be applied
-    if (ImGui::BeginCombo("Dimension", selected_dimension_)) {
+    if (ImGui::BeginCombo("Dimension", selected_dimension_))
+    {
         bool _x, _y, _z;
-        const char * dimensions[] = {"X", "Y", "Z"};
-        
-        if (ImGui::Selectable("X", &_x)) {
+        const char *dimensions[] = {"X", "Y", "Z"};
+
+        if (ImGui::Selectable("X", &_x))
+        {
             selected_dimension_ = dimensions[0];
         }
-        if (ImGui::Selectable("Y", &_y)) {
+        if (ImGui::Selectable("Y", &_y))
+        {
             selected_dimension_ = dimensions[1];
         }
-        if (ImGui::Selectable("Z", &_z)) {
+        if (ImGui::Selectable("Z", &_z))
+        {
             selected_dimension_ = dimensions[2];
         }
         ImGui::EndCombo();
     }
 
     // Toggle mesh display
-    if (ImGui::Checkbox("Display Mesh", &display_mesh_)){
+    if (ImGui::Checkbox("Display Mesh", &display_mesh_))
+    {
         std::cout << "Mesh display : " << display_mesh_ << std::endl;
     }
 
     // Toggle skeleton display
-    if (ImGui::Checkbox("Display Skeleton", &display_skeleton_)){
+    if (ImGui::Checkbox("Display Skeleton", &display_skeleton_))
+    {
         std::cout << "Skeleton display : " << display_skeleton_ << std::endl;
     }
 
     // Toggle mesh coloration
-    if (ImGui::Checkbox("Color Mesh", &color_mesh_)){
+    if (ImGui::Checkbox("Color Mesh", &color_mesh_))
+    {
         std::cout << "Mesh color : " << color_mesh_ << std::endl;
     }
 
     // Toggle skeleton coloration
-    if (ImGui::Checkbox("Color Skeleton", &color_skeleton_)){
+    if (ImGui::Checkbox("Color Skeleton", &color_skeleton_))
+    {
         std::cout << "Skeleton color : " << color_skeleton_ << std::endl;
     }
 
     // Display file browser
     file_dialog_.Display();
-    if (file_dialog_.HasSelected()) {
+    if (file_dialog_.HasSelected())
+    {
         // Load selected mesh
         std::string imput_path = file_dialog_.GetSelected();
         pmp::SurfaceMeshGL imput_mesh;

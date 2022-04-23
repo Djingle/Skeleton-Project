@@ -48,18 +48,24 @@ cd ./skeleton_project
 git submodule update --init --recursive
 ```
 
-1. Remplacer le fichier `externals/pmp-library/src/pmp/visualiszation/SurfaceMeshGL.cpp` par le fichier `override_pmp_files/SurfaceMeshGL.cpp` :
+1. Remplacer le fichier `externals/pmp-library/src/pmp/visualization/SurfaceMeshGL.cpp` par le fichier `override_pmp_files/SurfaceMeshGL.cpp` :
 
    ```bash
    cp override_pmp_files/SurfaceMeshGL.cpp externals/pmp-library/src/pmp/visualization/SurfaceMeshGL.cpp
    ```
 
-2. Remplacer le fichier `externals/pmp-library/src/pmp/algorithms/SurfaceSmoothing.h` par le fichier `override_pmp_files/SurfaceSmoothing.h` :
+2. Remplacer le fichier `externals/pmp-library/src/pmp/visualization/SurfaceMeshGL.h` par le fichier `override_pmp_files/SurfaceMeshGL.h` :
+
+   ```bash
+   cp override_pmp_files/SurfaceMeshGL.h externals/pmp-library/src/pmp/visualization/SurfaceMeshGL.h
+   ```
+
+3. Remplacer le fichier `externals/pmp-library/src/pmp/algorithms/SurfaceSmoothing.h` par le fichier `override_pmp_files/SurfaceSmoothing.h` :
    ```bash
    cp override_pmp_files/SurfaceSmoothing.h externals/pmp-library/src/pmp/algorithms/SurfaceSmoothing.h
    ```
 
-3. Remplacer le fichier `externals/pmp-library/src/pmp/SurfaceMeshIO.cpp` par le fichier `override_pmp_files/SurfaceMeshIO.cpp` :
+4. Remplacer le fichier `externals/pmp-library/src/pmp/SurfaceMeshIO.cpp` par le fichier `override_pmp_files/SurfaceMeshIO.cpp` :
    ```bash
    cp override_pmp_files/SurfaceMeshIO.cpp externals/pmp-library/src/pmp/SurfaceMeshIO.cpp
    ```
