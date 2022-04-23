@@ -2,3 +2,5 @@
 build*/**
 externals/**
 data_output/*
+correspondance-poly.polylines.txt
+skel-poly.polylines.txt

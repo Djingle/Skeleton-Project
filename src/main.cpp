@@ -122,12 +122,15 @@ int main(int argc, char **argv)
 
       // Output skeleton points and the corresponding surface points
         output.open("correspondance-poly.polylines.txt");
+        pmp::Vertex n_v;
         for(Skeleton_vertex v : CGAL::make_range(vertices(skeleton)))
         {
             for(vertex_descriptor vd : skeleton[v].vertices)
             {
-                        output << "2 " << skeleton[v].point << "  " << get(CGAL::vertex_point, tmesh, vd)  << "\n";
-                        skel.add_vertex(pmp::Point(skeleton[v].point[0],skeleton[v].point[1],skeleton[v].point[2]));
+              output << skeleton[v].point << "\n" ;//<< get(CGAL::vertex_point, tmesh, vd)  << "\n";
+              n_v = skel.add_vertex(pmp::Point(skeleton[v].point[0],skeleton[v].point[1],skeleton[v].point[2]));
+              auto test = skel.vertex_property<pmp::Color>("v:color");
+              test[n_v] = pmp::Color(255,0,0);
             }
         }
 
