@@ -23,18 +23,18 @@
 
 #include <fstream>
 
-typedef CGAL::Simple_cartesian<double> Kernel;
-typedef Kernel::Point_3 Point;
-typedef CGAL::Polyhedron_3<Kernel> Polyhedron;
-typedef CGAL::Surface_mesh<Kernel::Point_3> Mesh;
+typedef CGAL::Simple_cartesian<double>                        Kernel;
+typedef Kernel::Point_3                                       Point;
+typedef CGAL::Polyhedron_3<Kernel>                            Polyhedron;
+typedef CGAL::Surface_mesh<Kernel::Point_3>                   Mesh;
 
-typedef boost::graph_traits<Polyhedron>::vertex_descriptor vertex_descriptor;
+typedef boost::graph_traits<Polyhedron>::vertex_descriptor    vertex_descriptor;
 
 typedef CGAL::Mean_curvature_flow_skeletonization<Polyhedron> Skeletonization;
-typedef Skeletonization::Skeleton Skeleton;
+typedef Skeletonization::Skeleton                             Skeleton;
 
-typedef Skeleton::vertex_descriptor Skeleton_vertex;
-typedef Skeleton::edge_descriptor Skeleton_edge;
+typedef Skeleton::vertex_descriptor                           Skeleton_vertex;
+typedef Skeleton::edge_descriptor                             Skeleton_edge;
 
 int main(int argc, char **argv)
 {
@@ -69,9 +69,9 @@ int main(int argc, char **argv)
     }
     // ****************************************************************************************
     pmp::SurfaceMeshGL inputMesh, skel;
-
-    // Test
-    std::ifstream input((argc > 1) ? argv[1] : inputMeshPath);
+        
+      // Test
+    std::ifstream input((argc>1)?argv[1]:inputMeshPath);
     Polyhedron tmesh;
     input >> tmesh;
 
@@ -84,8 +84,8 @@ int main(int argc, char **argv)
     Skeleton skeleton;
     Skeletonization mcs(tmesh);
 
-    mcs.set_quality_speed_tradeoff(100 * mcs.quality_speed_tradeoff());
-    mcs.set_medially_centered_speed_tradeoff(100 * mcs.medially_centered_speed_tradeoff());
+    mcs.set_quality_speed_tradeoff(100*mcs.quality_speed_tradeoff());
+    mcs.set_medially_centered_speed_tradeoff(100*mcs.medially_centered_speed_tradeoff());
     mcs.set_is_medially_centered(true);
     // 1. Contract the mesh by mean curvature flow.
     mcs.contract_geometry();
@@ -112,60 +112,68 @@ int main(int argc, char **argv)
 
     // Output all the edges of the skeleton.
     std::ofstream output("skel-poly.polylines.txt");
-    for (Skeleton_edge e : CGAL::make_range(edges(skeleton)))
+    for(Skeleton_edge e : CGAL::make_range(edges(skeleton)))
     {
-        const Point &s = skeleton[source(e, skeleton)].point;
-        const Point &t = skeleton[target(e, skeleton)].point;
-        output << "2 " << s << " " << t << "\n";
+        const Point& s = skeleton[source(e, skeleton)].point;
+        const Point& t = skeleton[target(e, skeleton)].point;
+        output << "2 "<< s << " " << t << "\n";
     }
     output.close();
 
     // Output skeleton points and the corresponding surface points
     output.open("correspondance-poly.polylines.txt");
-    // pmp::Vertex n_v;
-    float m_distance = 0.0;
-    float n_liens; // nombre de correspondances
+    //pmp::Vertex n_v;
+    double m_distance = 0.0; // distance moyenne entre le point du squelette et ceux de la surface
+    double n_liens; // nombre de correspondances
+    double max_distance{0}, min_distance{1};
     pmp::Vertex n_v;
-    for (Skeleton_vertex v : CGAL::make_range(vertices(skeleton)))
-    {
+    auto dist = skel.vertex_property<float>("distance");
+    for(Skeleton_vertex v : CGAL::make_range(vertices(skeleton))) {
         n_liens = 0.0;
-        for (vertex_descriptor vd : skeleton[v].vertices)
-        {
+        m_distance = 0.0;
+        for(vertex_descriptor vd : skeleton[v].vertices) {
             n_liens++;
-            output << skeleton[v].point << get(CGAL::vertex_point, tmesh, vd) << "\n";
-            m_distance += CGAL::squared_distance(skeleton[v].point, get(CGAL::vertex_point, tmesh, vd));
+            output << skeleton[v].point << " lié à " << get(CGAL::vertex_point, tmesh, vd)  << "\n";
+            m_distance += sqrt(CGAL::squared_distance(skeleton[v].point, get(CGAL::vertex_point, tmesh, vd)));
         }
         m_distance /= n_liens;
-        n_v = skel.add_vertex(pmp::Point(skeleton[v].point[0], skeleton[v].point[1], skeleton[v].point[2]));
-        auto dist = skel.vertex_property<float>("distance");
+
+        if (m_distance > max_distance) {
+            max_distance = m_distance;
+        }
+        if (m_distance < min_distance) {
+            min_distance = m_distance;
+        }
+        n_v = skel.add_vertex(pmp::Point(skeleton[v].point[0],skeleton[v].point[1],skeleton[v].point[2]));
         dist[n_v] = m_distance;
-        output << "\n\n"
-               << m_distance << "\n"
-               << dist[n_v] << "\n\n";
+        output << "\nn_liens : " << n_liens << " oui\n" << m_distance  << "\n\n";
     }
 
-    skel.set_use_colors(true);
     auto col = skel.vertex_property<pmp::Color>("v:color");
-    for (auto v : skel.vertices())
-    {
-        col[v] = pmp::Color(1.0, 0.0, 0.0);
+    for (auto v : skel.vertices()) {
+        double actual_dist = (dist[v] - min_distance) / (max_distance - min_distance);
+        std::cout << actual_dist << std::endl;
+        col[v] = pmp::Color(1.0-actual_dist, actual_dist/2.0, 0.0);
     }
+    std::cout << "min_distance : " << min_distance << "max_distance : " << max_distance << std::endl;
 
-    // Load the input mesh
 
-    std::cout << "Trying to read " << inputMeshPath << std::endl;
-    inputMesh.read(inputMeshPath);
-    std::cout << "Successfully loaded mesh from \"" << inputMeshPath << "\"" << std::endl;
+  // Load the input mesh
+  
 
-    // Instanciate a mesh viewer and attach the input mesh
-    std::string winTitle = "Skeleton Viewer ";
-    int winWidth = 800;
-    int winHeight = 600;
-    SkeletonMeshViewer meshViewer{winTitle.c_str(),
-                                  winWidth, winHeight,
-                                  inputMesh, skel};
+  std::cout << "Trying to read " << inputMeshPath << std::endl;
+  inputMesh.read(inputMeshPath);
+  std::cout << "Successfully loaded mesh from \"" << inputMeshPath << "\"" << std::endl;
 
-    // Start main window loop
-    meshViewer.run();
-    return 0;
+  // Instanciate a mesh viewer and attach the input mesh
+  std::string winTitle = "Skeleton Viewer ";
+  int winWidth = 800;
+  int winHeight = 600;
+  SkeletonMeshViewer meshViewer{winTitle.c_str(),
+                                winWidth, winHeight,
+                                inputMesh, skel};
+
+  // Start main window loop
+  meshViewer.run();
+  return 0;
 }
