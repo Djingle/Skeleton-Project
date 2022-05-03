@@ -10,7 +10,6 @@
 
 #include <pmp/visualization/MeshViewer.h>
 #include <imgui.h>
-#include <iostream>
 
 #include "Skeletizator.h"
 #include "imfilebrowser.h"
@@ -33,52 +32,67 @@ public:
     SkeletonViewer(const char *title,
                    int width,
                    int height,
+                   int quality_speed_tradeoff, 
+                   int medially_centered_speed_tradeoff,
                    bool showgui = true);
 
     ///
     /// \fn void SkeletonViewer::process_imgui()
-    /// \brief Renders GUI
+    /// \brief Process GUI
     ///
     void process_imgui();
 
     ///
     /// \fn const bool& mesh_displayed()
-    /// \brief display_mesh_ getter
+    /// \brief Return display_mesh_ boolean
     ///
     inline const bool& mesh_displayed() const { return display_mesh_; }
 
     ///
     /// \fn const bool& skeleton_displayed()
-    /// \brief display_skeleton_ getter
+    /// \brief Return display_skeleton_ boolean
     ///
     inline const bool& skeleton_displayed() const { return display_skeleton_; }
 
     ///
     /// \fn const bool& mesh_colored()
-    /// \brief color_mesh_ getter
+    /// \brief Return color_mesh_ boolean
     ///
     inline const bool& mesh_colored() const { return color_mesh_; }
 
     ///
     /// \fn const bool& skeleton_colored()
-    /// \brief color_skeleton_ getter
+    /// \brief Return color_skeleton_ boolean
     ///
     inline const bool& skeleton_colored() const { return color_skeleton_; }
 
+    ///
+    /// \fn void draw(const std::string& draw_mode)
+    /// \brief Draw GUI
+    ///
+    /// \param draw_mode Drawing mode
+    ///
     virtual void draw(const std::string& draw_mode) override;
 
 private:
-    Skeletizator skeltizator_;
-    pmp::SurfaceMeshGL skel_;   // Skeleton mesh
-    const char * selected_dimension_; // Defines the dimension on which size is applied
+    // Skeletizator
+    Skeletizator* skeletizator_;
+
+    // Skeleton mesh
+    pmp::SurfaceMeshGL skel_;
+
+    // Scale
+    double size_;                       // Size
+    const char * selected_dimension_;   // Dimension of size
     
     // Display informations
     bool display_mesh_;
     bool display_skeleton_;
     bool color_mesh_;
     bool color_skeleton_;
+    bool mesh_loaded_;
 
-    double size_; // Size of the final object
+    // UI file browser
     ImGui::FileBrowser file_dialog_;
 };
 

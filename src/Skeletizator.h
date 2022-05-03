@@ -5,6 +5,11 @@
 /// \version 1.0.0
 ///
 
+#include <iostream>
+
+#ifndef SKELETIZATOR_H
+#define SKELETIZATOR_H
+
 #include <CGAL/internal/Surface_mesh_skeletonization/Curve_skeleton.h>
 #include <CGAL/Polyhedron_3.h>
 #include <CGAL/Surface_mesh/Surface_mesh.h>
@@ -14,6 +19,11 @@
 #include <CGAL/Polyhedron_3.h>
 #include <CGAL/Simple_cartesian.h>
 #include <CGAL/Mean_curvature_flow_skeletonization.h>
+
+#include <pmp/visualization/MeshViewer.h>
+#include <imgui.h>
+
+#include "imfilebrowser.h"
 
 typedef CGAL::Simple_cartesian<double>                        Kernel;
 typedef Kernel::Point_3                                       Point;
@@ -27,22 +37,6 @@ typedef Skeletonization::Skeleton                             Skeleton;
 
 typedef Skeleton::vertex_descriptor                           Skeleton_vertex;
 typedef Skeleton::edge_descriptor                             Skeleton_edge;
-
-///
-/// \file Skeletizator.h
-/// \brief Header file of Skeletizator
-/// \author EMERY Bryan, HORNY Gregory, LABAYE Paul, LAURENT Titouan, RAJENDIRAN Vinojan
-/// \version 1.0.0
-///
-
-#ifndef SKELETIZATOR_H
-#define SKELETIZATOR_H
-
-#include <pmp/visualization/MeshViewer.h>
-#include <imgui.h>
-#include <iostream>
-
-#include "imfilebrowser.h"
 
 ///
 /// \brief Skeletizator
@@ -84,8 +78,8 @@ public:
     int medially_centered_speed_tradeoff_;
 
     // Output skeletons
-    Skeleton CGAL_skel_;
-    pmp::SurfaceMeshGL PMP_skel_;
+    Skeleton* CGAL_skel_;
+    pmp::SurfaceMeshGL* PMP_skel_;
 
     // Skeleton attributs
     double max_radial_length_;
@@ -93,10 +87,10 @@ public:
 
 private:
     // Input mesh
-    Polyhedron mesh_;
+    Polyhedron* mesh_;
 
     // Skeletizor
-    Skeletonization skeletizator_;
+    Skeletonization* skeletizator_;
 };
 
 #endif
