@@ -75,7 +75,7 @@ void SkeletonMeshViewer::process_imgui()
     }
 
     // Select dimension on which the final size will be applied
-    if (ImGui::BeginCombo("Dimension", selected_dimension_))
+    if (ImGui::BeginCombo("Dimension", "X"))
     {
         bool _x, _y, _z;
         const char *dimensions[] = {"X", "Y", "Z"};
