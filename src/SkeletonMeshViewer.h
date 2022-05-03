@@ -68,7 +68,7 @@ protected:
     
 private:
 
-    const char * selected_dimension_; // Defines the dimension on which size is applied
+    const char * selected_dimension_ = "X"; // Defines the dimension on which size is applied
     
     // Display informations
     bool display_mesh_;
