@@ -21,8 +21,7 @@ SkeletonMeshViewer::SkeletonMeshViewer(const char *title,
                                                        display_skeleton_(true),
                                                        color_mesh_(false),
                                                        color_skeleton_(false),
-                                                       size_picked_(false),
-                                                       axis_picked_(false)
+                                                       size_picked_(false)
 {
     // Initiate the file dialog
     file_dialog_.SetTitle("Ouvrir");
@@ -71,7 +70,6 @@ void SkeletonMeshViewer::compute_size()
     pmp::Point y_max(-std::numeric_limits<double>::max());
     pmp::Point z_min(std::numeric_limits<double>::max());
     pmp::Point z_max(-std::numeric_limits<double>::max());
-    // compute x_size_
     for (auto v : mesh_.vertices()) {
         if (mesh_.position(v)[0] < x_min[0])
             x_min = mesh_.position(v);
@@ -93,10 +91,22 @@ void SkeletonMeshViewer::compute_size()
 
 void SkeletonMeshViewer::init_ratio()
 {
-    if (axis_picked_ && size_picked_) {
-        if (*selected_axis_ == 'X') ratio_ = user_size_ / x_size_;
-        else if (*selected_axis_ == 'Y') ratio_ = user_size_ / y_size_;
-        else if (*selected_axis_ == 'Z') ratio_ = user_size_ / z_size_;
+    if (size_picked_) {
+        if (selected_axis_ == 0) ratio_ = user_size_ / x_size_;
+        else if (selected_axis_ == 1) ratio_ = user_size_ / y_size_;
+        else if (selected_axis_ == 2) ratio_ = user_size_ / z_size_;
+    }
+}
+
+void SkeletonMeshViewer::color_skeleton()
+{
+    auto dist = skel_.vertex_property<float>("distance");
+    auto col = skel_.vertex_property<pmp::Color>("color");
+    for (auto v : skel_.vertices()) {
+        double act_dist = (dist[v]*ratio_);
+        std::cout << "dist : " << act_dist << std::endl;
+        col[v] = act_dist > 0.5 ? pmp::Color(0.0, 255.0, 0.0) : pmp::Color(255.0, 0.0, 0.0);
+        std::cout << "color : " << col[v] << std::endl;
     }
 }
 
@@ -115,31 +125,28 @@ void SkeletonMeshViewer::process_imgui()
     {
         size_picked_ = true;
         init_ratio();
+        color_skeleton();
         std::cout << "x_size_ :" << x_size_ << " y_size_ :" << y_size_ << " z_size_ :" << z_size_ << std::endl;
     }
 
     // Select dimension on which the final size will be applied
-    if (ImGui::BeginCombo("Dimension", selected_axis_))
+    if (ImGui::BeginCombo("Dimension", "X"))
     {
         bool _x, _y, _z;
-        const char *dimensions[] = {"X", "Y", "Z"};
 
         if (ImGui::Selectable("X", &_x))
         {
-            selected_axis_ = dimensions[0];
-            axis_picked_ = true;
+            selected_axis_ = 0;
             init_ratio();
         }
         if (ImGui::Selectable("Y", &_y))
         {
-            selected_axis_ = dimensions[1];
-            axis_picked_ = true;
+            selected_axis_ = 1;
             init_ratio();
         }
         if (ImGui::Selectable("Z", &_z))
         {
-            selected_axis_ = dimensions[2];
-            axis_picked_ = true;
+            selected_axis_ = 2;
             init_ratio();
         }
         ImGui::EndCombo();

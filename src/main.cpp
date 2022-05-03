@@ -146,13 +146,14 @@ int main(int argc, char **argv)
         output << "\nn_liens : " << n_liens << " oui\n" << m_distance  << "\n\n";
     }
 
-    auto col = skel.vertex_property<pmp::Color>("v:color");
-    for (auto v : skel.vertices()) {
-        double actual_dist = (dist[v] - min_distance) / (max_distance - min_distance);
-        std::cout << actual_dist << std::endl;
-        col[v] = pmp::Color(1.0-actual_dist, actual_dist/2.0, 0.0);
-    }
-    std::cout << "min_distance : " << min_distance << "max_distance : " << max_distance << std::endl;
+
+    // auto col = skel.vertex_property<pmp::Color>("v:color");
+    // for (auto v : skel.vertices()) {
+    //     double actual_dist = (dist[v] - min_distance) / (max_distance - min_distance);
+    //     std::cout << actual_dist << std::endl;
+    //     col[v] = pmp::Color(1.0-actual_dist, actual_dist/2.0, 0.0);
+    // }
+    // std::cout << "min_distance : " << min_distance << "max_distance : " << max_distance << std::endl;
 
 
   // Load the input mesh

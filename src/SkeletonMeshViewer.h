@@ -72,12 +72,18 @@ public:
     /// \brief computes the ratio between the logical size and the physical size
     void init_ratio();
 
+    /// \fn void color_skeleton()
+    /// \brief colors the skeleton according to the physical size
+    void color_skeleton();
+
 protected:
     pmp::SurfaceMeshGL skel_;   //!< the mesh
     
 private:
 
-    const char * selected_dimension_; // Defines the dimension on which size is applied
+    int selected_axis_ = 0; // Defines the dimension on which size is applied
+
+    double max_dist_, min_dist_;
     
     // Display informations
     bool display_mesh_;
@@ -85,7 +91,6 @@ private:
     bool color_mesh_;
     bool color_skeleton_;
     bool size_picked_;
-    bool axis_picked_;
 
     double user_size_, x_size_, y_size_, z_size_;
     double ratio_;
