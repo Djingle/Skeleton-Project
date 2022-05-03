@@ -20,7 +20,9 @@ SkeletonMeshViewer::SkeletonMeshViewer(const char *title,
                                                        display_mesh_(true),
                                                        display_skeleton_(true),
                                                        color_mesh_(false),
-                                                       color_skeleton_(false)
+                                                       color_skeleton_(false),
+                                                       size_picked_(false),
+                                                       axis_picked_(false)
 {
     // Initiate the file dialog
     file_dialog_.SetTitle("Ouvrir");
@@ -48,6 +50,8 @@ SkeletonMeshViewer::SkeletonMeshViewer(const char *title,
     // Set viewer angle parameter
     mesh_.set_crease_angle(0);
     mesh_.set_alpha(0.5);
+    
+    compute_size();
 }
 
 void SkeletonMeshViewer::draw(const std::string &drawMode)
@@ -57,6 +61,43 @@ void SkeletonMeshViewer::draw(const std::string &drawMode)
         mesh_.draw(projection_matrix_, modelview_matrix_, drawMode);
     if (display_skeleton_)
         skel_.draw(projection_matrix_, modelview_matrix_, "Points", false);
+}
+
+void SkeletonMeshViewer::compute_size()
+{
+    pmp::Point x_min(std::numeric_limits<double>::max());
+    pmp::Point x_max(-std::numeric_limits<double>::max());
+    pmp::Point y_min(std::numeric_limits<double>::max());
+    pmp::Point y_max(-std::numeric_limits<double>::max());
+    pmp::Point z_min(std::numeric_limits<double>::max());
+    pmp::Point z_max(-std::numeric_limits<double>::max());
+    // compute x_size_
+    for (auto v : mesh_.vertices()) {
+        if (mesh_.position(v)[0] < x_min[0])
+            x_min = mesh_.position(v);
+        if (mesh_.position(v)[0] > x_max[0])
+            x_max = mesh_.position(v);
+        if (mesh_.position(v)[1] < y_min[1])
+            y_min = mesh_.position(v);
+        if (mesh_.position(v)[1] > y_max[1])
+            y_max = mesh_.position(v);
+        if (mesh_.position(v)[2] < z_min[2])
+            z_min = mesh_.position(v);
+        if (mesh_.position(v)[2] > z_max[2])
+            z_max = mesh_.position(v);
+    }
+    x_size_ = distance(x_min, x_max);
+    y_size_ = distance(y_min, y_max);
+    z_size_ = distance(z_min, z_max);
+}
+
+void SkeletonMeshViewer::init_ratio()
+{
+    if (axis_picked_ && size_picked_) {
+        if (*selected_axis_ == 'X') ratio_ = user_size_ / x_size_;
+        else if (*selected_axis_ == 'Y') ratio_ = user_size_ / y_size_;
+        else if (*selected_axis_ == 'Z') ratio_ = user_size_ / z_size_;
+    }
 }
 
 void SkeletonMeshViewer::process_imgui()
@@ -70,27 +111,36 @@ void SkeletonMeshViewer::process_imgui()
     }
 
     // Select size of the final object
-    if (ImGui::InputDouble("Final size", &size_, 0.01, 0.1))
+    if (ImGui::InputDouble("Final size", &user_size_, 0.01, 0.1))
     {
+        size_picked_ = true;
+        init_ratio();
+        std::cout << "x_size_ :" << x_size_ << " y_size_ :" << y_size_ << " z_size_ :" << z_size_ << std::endl;
     }
 
     // Select dimension on which the final size will be applied
-    if (ImGui::BeginCombo("Dimension", selected_dimension_))
+    if (ImGui::BeginCombo("Dimension", selected_axis_))
     {
         bool _x, _y, _z;
         const char *dimensions[] = {"X", "Y", "Z"};
 
         if (ImGui::Selectable("X", &_x))
         {
-            selected_dimension_ = dimensions[0];
+            selected_axis_ = dimensions[0];
+            axis_picked_ = true;
+            init_ratio();
         }
         if (ImGui::Selectable("Y", &_y))
         {
-            selected_dimension_ = dimensions[1];
+            selected_axis_ = dimensions[1];
+            axis_picked_ = true;
+            init_ratio();
         }
         if (ImGui::Selectable("Z", &_z))
         {
-            selected_dimension_ = dimensions[2];
+            selected_axis_ = dimensions[2];
+            axis_picked_ = true;
+            init_ratio();
         }
         ImGui::EndCombo();
     }

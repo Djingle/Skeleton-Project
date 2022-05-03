@@ -138,12 +138,9 @@ int main(int argc, char **argv)
         }
         m_distance /= n_liens;
 
-        if (m_distance > max_distance) {
-            max_distance = m_distance;
-        }
-        if (m_distance < min_distance) {
-            min_distance = m_distance;
-        }
+        if (m_distance > max_distance) max_distance = m_distance;
+        if (m_distance < min_distance) min_distance = m_distance;
+
         n_v = skel.add_vertex(pmp::Point(skeleton[v].point[0],skeleton[v].point[1],skeleton[v].point[2]));
         dist[n_v] = m_distance;
         output << "\nn_liens : " << n_liens << " oui\n" << m_distance  << "\n\n";

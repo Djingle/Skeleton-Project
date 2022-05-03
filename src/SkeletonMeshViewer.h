@@ -63,6 +63,15 @@ public:
 
     virtual void draw(const std::string& draw_mode) override;
 
+
+    /// \fn double compute_size(int axis)
+    /// \brief computes the logical size of the mesh
+    void compute_size();
+
+    /// \fn void init_ratio()
+    /// \brief computes the ratio between the logical size and the physical size
+    void init_ratio();
+
 protected:
     pmp::SurfaceMeshGL skel_;   //!< the mesh
     
@@ -75,8 +84,11 @@ private:
     bool display_skeleton_;
     bool color_mesh_;
     bool color_skeleton_;
+    bool size_picked_;
+    bool axis_picked_;
 
-    double size_; // Size of the final object
+    double user_size_, x_size_, y_size_, z_size_;
+    double ratio_;
     ImGui::FileBrowser file_dialog_;
 };
 
