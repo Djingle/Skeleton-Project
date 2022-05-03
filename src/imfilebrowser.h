@@ -1,3 +1,10 @@
+///
+/// \file imfilebrowser.h.0
+/// \brief Header file of ImFileBrowser (ImGui file browser)
+/// \author EMERY Bryan, HORNY Gregory, LABAYE Paul, LAURENT Titouan, RAJENDIRAN Vinojan
+/// \version 1.0.0
+///
+
 // MIT License
 
 // Copyright (c) 2019-2022 Zhuang Guan
