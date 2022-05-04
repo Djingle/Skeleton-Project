@@ -216,6 +216,11 @@ void SkeletonViewer::process_imgui()
         skel_ = *(skeletizator_->PMP_skel_);
         skel_.vertex_property<pmp::Color>("v:color");
 
+        // Reset parameter
+        selected_axis_ = 0;
+        threshold_ = 0.0;
+        user_size_ = 0.0;        
+
         // Set scene
         pmp::BoundingBox bb = mesh_.bounds();
         set_scene((pmp::vec3)bb.center(), 0.6 * bb.size());

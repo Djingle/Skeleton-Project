@@ -105,7 +105,7 @@ private:
     bool size_picked_;
     int selected_axis_ = 0;
     double threshold_ = 0.0;
-    double user_size_;
+    double user_size_ = 0.0;
     double x_size_;
     double y_size_;
     double z_size_;
