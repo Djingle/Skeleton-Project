@@ -55,11 +55,16 @@ SkeletonMeshViewer::SkeletonMeshViewer(const char *title,
 
 void SkeletonMeshViewer::draw(const std::string &drawMode)
 {
+    if (size_picked_) color_skeleton();
     // draw mesh
     if (display_mesh_)
         mesh_.draw(projection_matrix_, modelview_matrix_, drawMode);
     if (display_skeleton_)
         skel_.draw(projection_matrix_, modelview_matrix_, "Points", false);
+    auto col = skel_.vertex_property<pmp::Color>("v:color");
+    for (auto v : skel_.vertices()) {
+        std::cout << "color : " << col[v] << std::endl;
+    }
 }
 
 void SkeletonMeshViewer::compute_size()
@@ -101,12 +106,12 @@ void SkeletonMeshViewer::init_ratio()
 void SkeletonMeshViewer::color_skeleton()
 {
     auto dist = skel_.vertex_property<float>("distance");
-    auto col = skel_.vertex_property<pmp::Color>("color");
+    auto col = skel_.vertex_property<pmp::Color>("v:color");
     for (auto v : skel_.vertices()) {
         double act_dist = (dist[v]*ratio_);
-        std::cout << "dist : " << act_dist << std::endl;
-        col[v] = act_dist > 0.5 ? pmp::Color(0.0, 255.0, 0.0) : pmp::Color(255.0, 0.0, 0.0);
-        std::cout << "color : " << col[v] << std::endl;
+        //std::cout << "dist : " << act_dist << std::endl;
+        col[v] = act_dist > 0.5 ? pmp::Color(0.0, 1.0, 0.0) : pmp::Color(1.0, 0.0, 0.0);
+        //std::cout << "color : " << col[v] << std::endl;
     }
 }
 
