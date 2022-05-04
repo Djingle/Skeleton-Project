@@ -5,10 +5,17 @@
 /// \version 1.0.0
 ///
 
-#include <iostream>
+
 
 #ifndef SKELETIZATOR_H
 #define SKELETIZATOR_H
+
+#include <imgui.h>
+#include <iostream>
+
+#include "imfilebrowser.h"
+
+#include <pmp/visualization/MeshViewer.h>
 
 #include <CGAL/internal/Surface_mesh_skeletonization/Curve_skeleton.h>
 #include <CGAL/Polyhedron_3.h>
@@ -19,11 +26,6 @@
 #include <CGAL/Polyhedron_3.h>
 #include <CGAL/Simple_cartesian.h>
 #include <CGAL/Mean_curvature_flow_skeletonization.h>
-
-#include <pmp/visualization/MeshViewer.h>
-#include <imgui.h>
-
-#include "imfilebrowser.h"
 
 typedef CGAL::Simple_cartesian<double>                        Kernel;
 typedef Kernel::Point_3                                       Point;

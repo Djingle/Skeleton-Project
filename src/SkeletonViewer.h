@@ -67,6 +67,24 @@ public:
     inline const bool& skeleton_colored() const { return color_skeleton_; }
 
     ///
+    /// \fn double compute_size()
+    /// \brief Compute the logical size of the mesh
+    ///
+    void compute_size();
+
+    ///
+    /// \fn void init_ratio()
+    /// \brief Computes the ratio between the logical size and the physical size
+    ///
+    void init_ratio();
+
+    ///
+    /// \fn void color_skeleton()
+    /// \brief Color the skeleton according to the physical size
+    ///
+    void color_skeleton();
+
+    ///
     /// \fn void draw(const std::string& draw_mode)
     /// \brief Draw GUI
     ///
@@ -82,9 +100,14 @@ private:
     pmp::SurfaceMeshGL skel_;
 
     // Scale
-    double size_;                       // Size
-    const char * selected_dimension_;   // Dimension of size
-    
+    bool size_picked_;
+    int selected_axis_ = 0;
+    double user_size_;
+    double x_size_;
+    double y_size_;
+    double z_size_;
+    double ratio_;
+
     // Display informations
     bool display_mesh_;
     bool display_skeleton_;
