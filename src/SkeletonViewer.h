@@ -26,6 +26,8 @@ public:
     ///
     /// \param title Name of window
     /// \param width Width of window
+    /// \param quality_speed_tradeoff Value of quality parameter
+    /// \param medially_centered_speed_tradeoff Value of medial axis parameter
     /// \param height Height of window
     /// \param showgui Show graphic UI (default : TRUE)
     ///
@@ -102,6 +104,7 @@ private:
     // Scale
     bool size_picked_;
     int selected_axis_ = 0;
+    double threshold_ = 0.0;
     double user_size_;
     double x_size_;
     double y_size_;

@@ -117,7 +117,7 @@ void SkeletonViewer::color_skeleton()
     for(auto v : skel_.vertices())
     {
         double act_dist = (dist[v]*ratio_);
-        col[v] = act_dist > ratio_*skeletizator_->max_radial_length_*0.2 ? pmp::Color(0.0, 1.0, 0.0) : pmp::Color(1.0, 0.0, 0.0);
+        col[v] = act_dist > ratio_*skeletizator_->max_radial_length_*threshold_/100.0 ? pmp::Color(0.0, 1.0, 0.0) : pmp::Color(1.0, 0.0, 0.0);
     }
 }
 
@@ -134,8 +134,12 @@ void SkeletonViewer::process_imgui()
     if(mesh_loaded_)
     {
         // Select size of the final object
-        if (ImGui::InputDouble("Final size", &user_size_, 0.1, 0.1))
+        if (ImGui::InputDouble("Final size", &user_size_, 0.01, 0.1))
         {
+            // user_size_ between 0 and 100           
+            user_size_ = std::max(0.0, user_size_);
+            user_size_ = std::min(1000.0, user_size_);
+
             size_picked_ = true;
             init_ratio();
             color_skeleton();
@@ -164,6 +168,16 @@ void SkeletonViewer::process_imgui()
             ImGui::EndCombo();
         }
 
+        // Select size of the final object
+        if (ImGui::InputDouble("Threshold", &threshold_, 0.1, 0.10))
+        {
+            // threshold_ between 0 and 100  
+            threshold_ = std::max(0.0, threshold_);
+            threshold_ = std::min(100.0, threshold_);
+
+            color_skeleton();
+        }
+
         // Toggle mesh display
         if (ImGui::Checkbox("Display Mesh", &display_mesh_))
         {
@@ -171,11 +185,6 @@ void SkeletonViewer::process_imgui()
 
         // Toggle skeleton display
         if (ImGui::Checkbox("Display Skeleton", &display_skeleton_))
-        {
-        }
-
-        // Toggle mesh coloration
-        if (ImGui::Checkbox("Color Mesh", &color_mesh_))
         {
         }
 
