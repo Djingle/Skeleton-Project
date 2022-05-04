@@ -8,7 +8,7 @@ project(skeleton
 set(BUILD_STUDENTS FALSE CACHE PATH "Set to true if you want to build the student version")
 set(BUILD_CORRECTIONS FALSE CACHE PATH "Set to true if you want to build the corrections too")
 
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # Specify the path to the compiled pmp library
@@ -80,11 +80,27 @@ if(NOT LIB_STB_IMAGE)
     message(FATAL_ERROR "stb_image library could not be found")
 endif()
 
+# Make sure gmp is accessible
+find_library(LIB_GMP
+             NAMES gmp
+             PATHS ${PATH_TO_EXTERNAL_LIBS})
+if(NOT LIB_STB_IMAGE)
+    message(FATAL_ERROR "gmp library could not be found")
+endif()
+
+# Make sure mpfr is accessible
+find_library(LIB_MPFR
+             NAMES mpfr
+             PATHS ${PATH_TO_EXTERNAL_LIBS})
+if(NOT LIB_STB_IMAGE)
+    message(FATAL_ERROR "mpfr library could not be found")
+endif()
+
 # List the external libraries depending on the OS (e.g. opengl32 required on windows, but is called GL on *nix systems)
 if(WIN32)
     set(LINK_EXTERNAL_LIBRARIES ${LIB_PMP_VIS} ${LIB_GLFW} ${LIB_GLEW} opengl32  ${LIB_PMP} ${LIB_IMGUI} ${LIB_STB_IMAGE})
 else()	
-    set(LINK_EXTERNAL_LIBRARIES ${LIB_PMP_VIS} GL ${LIB_GLEW} ${LIB_GLFW} ${LIB_PMP} ${LIB_IMGUI} ${LIB_STB_IMAGE} ${CMAKE_DL_LIBS} ${X11_LIBRARIES})
+    set(LINK_EXTERNAL_LIBRARIES ${LIB_PMP_VIS} GL ${LIB_GLEW} ${LIB_GLFW} ${LIB_PMP} ${LIB_IMGUI} ${LIB_STB_IMAGE} ${CMAKE_DL_LIBS} ${X11_LIBRARIES} ${LIB_GMP} ${LIB_MPFR})
 endif()
 
 # Add include directories of external libs (where the headers are stored)
@@ -96,7 +112,7 @@ include_directories("externals/pmp-library/external/imgui/")
 
 # Check compiler and add corresponding flags
 if(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -D_USE_MATH_DEFINES -DNOMINMAX -D_CRT_SECURE_NO_WARNINGS")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -D_USE_MATH_DEFINES -DNOMINMAX -D_CRT_SECURE_NO_WARNINGS -lstdc++f")
     add_compile_options(/wd4267) # conversion from size_t
     add_compile_options(/wd4244) # conversion from double to float
     add_compile_options(/wd4305) # truncation from double to float

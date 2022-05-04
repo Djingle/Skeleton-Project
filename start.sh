@@ -1,1 +1,1 @@
-./build/src/skeleton $1
+./build/src/skeleton

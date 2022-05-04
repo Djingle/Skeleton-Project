@@ -2,79 +2,25 @@
 /// \file main.cpp
 /// \brief Main application
 /// \author EMERY Bryan, HORNY Gregory, LABAYE Paul, LAURENT Titouan, RAJENDIRAN Vinojan
-/// \version 0.2.0
+/// \version 1.0.0
 ///
 
-#include <iostream>
+// Window size
+#define W_HEIGHT 810
+#define W_WIDTH 1290
 
-#include "./cli_tools.h"
-#include "./SkeletonMeshViewer.h"
+// Algorithm parameter
+#define QS_TRADEOFF 100
+#define MCS_TRADEOFF 100
 
-bool isWatertight(const pmp::SurfaceMesh &mesh)
-{
-    for (auto he : mesh.halfedges())
-    {
-        if (mesh.is_boundary(he))
-            return false;
-    }
-    return true;
-}
+#include "SkeletonViewer.h"
 
 int main(int argc, char **argv)
 {
-    // Parsing command line *******************************************************************
-    // Set required arguments
-    std::vector<ArgPair> requiredArgs;
+	// Instanciate a mesh viewer and attach the input mesh
+	SkeletonViewer viewer("Skeleton Viewer", W_WIDTH, W_HEIGHT, QS_TRADEOFF, MCS_TRADEOFF);
 
-    requiredArgs.push_back(ArgPair("inputMeshPath",
-                                   "Path of the mesh to be loaded"));
-
-    // Check command line validity
-    if ((size_t)argc != requiredArgs.size() + 1)
-    {
-        std::cerr << "Error: command line arguments do not fit with usage" << std::endl;
-        printUsage(argc, argv, requiredArgs);
-        return -1;
-    }
-
-    // Get arguments from command line
-    int iArg = 1;
-    std::string inputMeshPath;
-    try
-    {
-        inputMeshPath = argv[iArg++];
-    }
-    catch (const std::exception &e)
-    {
-        std::cerr << "Error while parsing arguments:" << std::endl;
-        std::cerr << e.what() << "\n";
-        std::cerr << "Abort process." << std::endl;
-        return 1;
-    }
-    // ****************************************************************************************
-
-    // Load the input mesh
-    pmp::SurfaceMeshGL inputMesh;
-    std::cout << "Trying to read " << inputMeshPath << std::endl;
-    inputMesh.read(inputMeshPath);
-    std::cout << "Successfully loaded mesh from \"" << inputMeshPath << "\"" << std::endl;
-
-    if (!isWatertight(inputMesh))
-    {
-        std::cout << "The mesh has to be watertight" << std::endl;
-        exit(EXIT_FAILURE);
-    }
-
-    // Instanciate a mesh viewer and attach the input mesh
-    std::string winTitle = "Skeleton Viewer ";
-    int winWidth = 800;
-    int winHeight = 600;
-    SkeletonMeshViewer meshViewer{winTitle.c_str(),
-                                  winWidth, winHeight,
-                                  inputMesh};
-
-    // Start main window loop
-    meshViewer.run();
-
-    return 0;
+	// Start main window loop
+	viewer.run();
+	return 0;
 }
