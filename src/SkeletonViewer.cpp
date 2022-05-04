@@ -13,20 +13,20 @@
 SkeletonViewer::SkeletonViewer(const char *title,
                                int width,
                                int height,
-                               int quality_speed_tradeoff, 
+                               int quality_speed_tradeoff,
                                int medially_centered_speed_tradeoff,
                                bool showgui) : pmp::MeshViewer(title, width, height, showgui),
-                                                               display_mesh_(true),
-                                                               display_skeleton_(true),
-                                                               color_mesh_(false),
-                                                               color_skeleton_(false)
+                                               display_mesh_(true),
+                                               display_skeleton_(true),
+                                               color_mesh_(false),
+                                               color_skeleton_(false)
 {
     // Initiate the file dialog
     file_dialog_.SetTitle("Ouvrir");
     file_dialog_.SetTypeFilters({".off"});
 
     // Init skeletizator
-    Skeletizator* temp_sk = new Skeletizator(quality_speed_tradeoff,
+    Skeletizator *temp_sk = new Skeletizator(quality_speed_tradeoff,
                                              medially_centered_speed_tradeoff);
 
     skeletizator_ = temp_sk;
@@ -37,13 +37,13 @@ SkeletonViewer::SkeletonViewer(const char *title,
 void SkeletonViewer::draw(const std::string &drawMode)
 {
     // Draw mesh
-    if(display_mesh_)
+    if (display_mesh_)
         mesh_.draw(projection_matrix_, modelview_matrix_, drawMode);
 
     // Draw skeleton
     pmp::SurfaceMeshGL i_dont_unterstand_this_bug_hahaha_sadface_temp_skel(skel_);
 
-    if(display_skeleton_)
+    if (display_skeleton_)
         i_dont_unterstand_this_bug_hahaha_sadface_temp_skel.draw(projection_matrix_, modelview_matrix_, "Points", false);
 }
 
@@ -57,7 +57,7 @@ void SkeletonViewer::compute_size()
     pmp::Point z_max(std::numeric_limits<double>::min());
 
     // Get the min and max values in each dimension
-    for(auto v : mesh_.vertices())
+    for (auto v : mesh_.vertices())
     {
         if (mesh_.position(v)[0] < x_min[0])
             x_min = mesh_.position(v);
@@ -85,26 +85,26 @@ void SkeletonViewer::compute_size()
 
 void SkeletonViewer::init_ratio()
 {
-    if(size_picked_)
+    if (size_picked_)
     {
-        switch(selected_axis_)
+        switch (selected_axis_)
         {
-            case 0:
-                ratio_ = user_size_/x_size_;
-                break;
-            
-            case 1:
-                ratio_ = user_size_/y_size_;
-                break;
+        case 0:
+            ratio_ = user_size_ / x_size_;
+            break;
 
-            case 2:
-                ratio_ = user_size_/z_size_;
-                break;
+        case 1:
+            ratio_ = user_size_ / y_size_;
+            break;
 
-            default:
-                std::cout << "Invalid selected axis, ratio is 1:1" << std::endl;
-                ratio_ = 1.0;
-                break;
+        case 2:
+            ratio_ = user_size_ / z_size_;
+            break;
+
+        default:
+            std::cout << "Invalid selected axis, ratio is 1:1" << std::endl;
+            ratio_ = 1.0;
+            break;
         }
     }
 }
@@ -114,10 +114,10 @@ void SkeletonViewer::color_skeleton()
     auto dist = skel_.get_vertex_property<double>("radial_length");
     auto col = skel_.get_vertex_property<pmp::Color>("v:color");
 
-    for(auto v : skel_.vertices())
+    for (auto v : skel_.vertices())
     {
-        double act_dist = (dist[v]*ratio_);
-        col[v] = act_dist > ratio_*skeletizator_->max_radial_length_*0.2 ? pmp::Color(0.0, 1.0, 0.0) : pmp::Color(1.0, 0.0, 0.0);
+        double act_dist = (dist[v] * ratio_);
+        col[v] = act_dist > ratio_ * skeletizator_->max_radial_length_ * 0.2 ? pmp::Color(0.0, 1.0, 0.0) : pmp::Color(1.0, 0.0, 0.0);
     }
 }
 
@@ -131,11 +131,12 @@ void SkeletonViewer::process_imgui()
         file_dialog_.Open();
     }
 
-    if(mesh_loaded_)
+    if (mesh_loaded_)
     {
         // Select size of the final object
-        if (ImGui::InputDouble("Final size", &user_size_, 0.1, 0.1))
+        if (ImGui::InputDouble("Final size", &user_size_, 0.000001, 0.0001))
         {
+            user_size_ = std::max(user_size_, 0.0);
             size_picked_ = true;
             init_ratio();
             color_skeleton();
@@ -187,7 +188,7 @@ void SkeletonViewer::process_imgui()
 
     // Display file browser
     file_dialog_.Display();
-    
+
     if (file_dialog_.HasSelected())
     {
         // Get .off file path
@@ -208,7 +209,7 @@ void SkeletonViewer::process_imgui()
         // Set scene
         pmp::BoundingBox bb = mesh_.bounds();
         set_scene((pmp::vec3)bb.center(), 0.6 * bb.size());
-        
+
         // Set viewer angle parameter
         mesh_.set_crease_angle(0);
         mesh_.set_alpha(0.5);
