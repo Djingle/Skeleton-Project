@@ -33,8 +33,9 @@ void Skeletizator::init(std::string path)
 
     if(!CGAL::is_triangle_mesh(*mesh_))
     {
+        CGAL::Polygon_mesh_processing::triangulate_faces(*mesh_);
         std::cout << "Input mesh is not triangulated." << std::endl;
-        exit(EXIT_FAILURE);
+        //exit(EXIT_FAILURE);
     }
 
     // Init CGAL skeleton class
