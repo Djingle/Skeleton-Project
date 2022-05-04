@@ -41,8 +41,10 @@ void SkeletonViewer::draw(const std::string &drawMode)
         mesh_.draw(projection_matrix_, modelview_matrix_, drawMode);
 
     // Draw skeleton
+    pmp::SurfaceMeshGL i_dont_unterstand_this_bug_hahaha_sadface_temp_skel(skel_);
+
     if(display_skeleton_)
-        skel_.draw(projection_matrix_, modelview_matrix_, "Points", false);
+        i_dont_unterstand_this_bug_hahaha_sadface_temp_skel.draw(projection_matrix_, modelview_matrix_, "Points", false);
 }
 
 void SkeletonViewer::compute_size()
@@ -101,21 +103,21 @@ void SkeletonViewer::init_ratio()
 
             default:
                 std::cout << "Invalid selected axis, ratio is 1:1" << std::endl;
-                ratio = 1.0;
+                ratio_ = 1.0;
                 break;
         }
     }
 }
 
-void SkeletonMeshViewer::color_skeleton()
+void SkeletonViewer::color_skeleton()
 {
-    auto dist = skel_.vertex_property<float>("distance");
-    auto col = skel_.vertex_property<pmp::Color>("v:color");
+    auto dist = skel_.get_vertex_property<double>("radial_length");
+    auto col = skel_.get_vertex_property<pmp::Color>("v:color");
 
     for(auto v : skel_.vertices())
     {
         double act_dist = (dist[v]*ratio_);
-        col[v] = act_dist > 0.5 ? pmp::Color(0.0, 1.0, 0.0) : pmp::Color(1.0, 0.0, 0.0);
+        col[v] = act_dist > ratio_*skeletizator_->max_radial_length_*0.2 ? pmp::Color(0.0, 1.0, 0.0) : pmp::Color(1.0, 0.0, 0.0);
     }
 }
 
@@ -132,7 +134,7 @@ void SkeletonViewer::process_imgui()
     if(mesh_loaded_)
     {
         // Select size of the final object
-        if (ImGui::InputDouble("Final size", &user_size_, 0.01, 0.1))
+        if (ImGui::InputDouble("Final size", &user_size_, 0.1, 0.1))
         {
             size_picked_ = true;
             init_ratio();
@@ -201,6 +203,7 @@ void SkeletonViewer::process_imgui()
         skeletizator_->compute_skeleton();
         skeletizator_->convert_to_pmp_mesh();
         skel_ = *(skeletizator_->PMP_skel_);
+        skel_.vertex_property<pmp::Color>("v:color");
 
         // Set scene
         pmp::BoundingBox bb = mesh_.bounds();
