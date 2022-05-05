@@ -15,7 +15,7 @@ Skeletizator::Skeletizator(int quality_speed_tradeoff,
     max_radial_length_ = std::numeric_limits<double>::min();
 }
 
-void Skeletizator::init(std::string path)
+bool Skeletizator::init(std::string path)
 {  
     // Clear previous skeletizator
     //if(mesh_)
@@ -31,9 +31,17 @@ void Skeletizator::init(std::string path)
     read_off(input, *temp_mesh);
     mesh_ = temp_mesh;
 
+    // Check if triange mesh
     if(!CGAL::is_triangle_mesh(*mesh_))
         CGAL::Polygon_mesh_processing::triangulate_faces(*mesh_);
  
+    // Check if closed mesh
+    if(!CGAL::is_closed(*mesh_))
+    {   
+        std::cout << "Loaded mesh was not watertight" << std::endl;
+        return false;
+    }
+
     // Init CGAL skeleton class
     Skeletonization* temp_sk = new Skeletonization(*mesh_);
     skeletizator_ = temp_sk;
@@ -41,6 +49,8 @@ void Skeletizator::init(std::string path)
     skeletizator_->set_is_medially_centered(true);
     skeletizator_->set_quality_speed_tradeoff(quality_speed_tradeoff_ * skeletizator_->quality_speed_tradeoff());
     skeletizator_->set_medially_centered_speed_tradeoff(medially_centered_speed_tradeoff_ * skeletizator_->medially_centered_speed_tradeoff()); 
+
+    return true;
 }
 
 void Skeletizator::compute_skeleton()

@@ -57,12 +57,13 @@ public:
     Skeletizator(int quality_speed_tradeoff, int medially_centered_speed_tradeoff);
 
     ///
-    /// \fn void init_skeletizator(std::string path)
+    /// \fn bool init_skeletizator(std::string path)
     /// \brief Init skeletizator with mesh from file
     ///
     /// \param path path to .off file to load
     ///
-    void init(std::string path);
+    /// \return true if loading was succesful, false if not
+    bool init(std::string path);
 
     ///
     /// \fn void compute_skeleton()

@@ -36,6 +36,9 @@ SkeletonViewer::SkeletonViewer(const char *title,
 
 void SkeletonViewer::draw(const std::string &drawMode)
 {
+    if(!mesh_loaded_)
+        return;
+
     // Draw mesh
     if (display_mesh_)
         mesh_.draw(projection_matrix_, modelview_matrix_, drawMode);
@@ -199,37 +202,43 @@ void SkeletonViewer::process_imgui()
     // Display file browser
     file_dialog_.Display();
 
-    if (file_dialog_.HasSelected())
+    if(file_dialog_.HasSelected())
     {
         // Get .off file path
         std::string input_path = file_dialog_.GetSelected();
 
-        // Load PMP mesh
-        mesh_.read(input_path);
-        compute_size();
-        mesh_loaded_ = true;
+        // Check if mesh is skeletonizable
+        if(skeletizator_->init(input_path))
+        {
+            // Load PMP mesh
+            mesh_.read(input_path);
+            compute_size();
+            mesh_loaded_ = true;
 
-        // Compute skeleton
-        skeletizator_->init(input_path);
-        skeletizator_->compute_skeleton();
-        skeletizator_->convert_to_pmp_mesh();
-        skel_ = *(skeletizator_->PMP_skel_);
-        skel_.vertex_property<pmp::Color>("v:color");
+            // Compute skeleton
+            skeletizator_->compute_skeleton();
+            skeletizator_->convert_to_pmp_mesh();
+            skel_ = *(skeletizator_->PMP_skel_);
+            skel_.vertex_property<pmp::Color>("v:color");      
+
+            // Set scene
+            pmp::BoundingBox bb = mesh_.bounds();
+            set_scene((pmp::vec3)bb.center(), 0.6 * bb.size());
+
+            // Set viewer angle parameter
+            mesh_.set_crease_angle(0);
+            mesh_.set_alpha(0.5);
+
+            update_mesh();
+        } else {
+            // Reset meshes
+            mesh_loaded_ = false;
+        }
 
         // Reset parameter
         selected_axis_ = 0;
         threshold_ = 0.0;
-        user_size_ = 0.0;        
-
-        // Set scene
-        pmp::BoundingBox bb = mesh_.bounds();
-        set_scene((pmp::vec3)bb.center(), 0.6 * bb.size());
-
-        // Set viewer angle parameter
-        mesh_.set_crease_angle(0);
-        mesh_.set_alpha(0.5);
-
-        update_mesh();
+        user_size_ = 0.01;  
 
         // Clear UI
         file_dialog_.ClearSelected();
