@@ -77,22 +77,22 @@ public:
     ///
     void convert_to_pmp_mesh();
 
-    // Customizable skeletizator parameters
-    int quality_speed_tradeoff_;
-    int medially_centered_speed_tradeoff_;
+    // Input mesh
+    Polyhedron* mesh_;
 
     // Output skeletons
     Skeleton* CGAL_skel_;
     pmp::SurfaceMeshGL* PMP_skel_;
 
+    // Customizable skeletizator parameters
+    int quality_speed_tradeoff_;
+    int medially_centered_speed_tradeoff_;
+    
     // Skeleton attributs
     double max_radial_length_;
     double min_radial_length_;
 
 private:
-    // Input mesh
-    Polyhedron* mesh_;
-
     // Skeletizor
     Skeletonization* skeletizator_;
 };

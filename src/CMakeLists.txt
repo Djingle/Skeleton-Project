@@ -11,5 +11,7 @@ target_sources(${PROJECT_NAME}
                Skeletizator.cpp
                SkeletonViewer.h
                SkeletonViewer.cpp
+               SkeletonTester.h
+               SkeletonTester.cpp
                main.cpp  
                )
